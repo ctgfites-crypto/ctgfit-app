@@ -60,6 +60,23 @@ input, select {
   flex: 1;
 }
 
+/* ---------- volver ---------- */
+.volver {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.volver:hover {
+  color: var(--lime);
+}
+
 /* ---------- header ---------- */
 .header {
   text-align: center;

@@ -1,0 +1,383 @@
+/* Landing CTG FIT — estilos scoped bajo .landing */
+.landing {
+  --carbon-l: #111111;
+  --lima-l: #c8f542;
+  --blanco-l: #ffffff;
+  --gris-l: #9a9a94;
+  --gris-osc-l: #1d1d1b;
+  background: var(--carbon-l);
+  color: var(--blanco-l);
+  line-height: 1.6;
+  min-height: 100dvh;
+}
+
+.landing a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.landing h1,
+.landing h2,
+.landing h3 {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.landing .wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* NAV */
+.landing nav {
+  position: sticky;
+  top: 0;
+  background: rgba(17, 17, 17, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  border-bottom: 1px solid #222;
+}
+
+.landing .nav-in {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 24px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.landing .nav-logo {
+  height: 44px;
+  display: block;
+}
+
+.landing .nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.landing .nav-links a:hover {
+  color: var(--lima-l);
+}
+
+@media (max-width: 560px) {
+  .landing .nav-links {
+    gap: 16px;
+    font-size: 13px;
+  }
+  .landing .nav-links a:nth-child(4) {
+    display: none;
+  }
+}
+
+/* HERO */
+.landing .hero {
+  padding: 90px 0 70px;
+  text-align: left;
+}
+
+.landing .eyebrow {
+  color: var(--lima-l);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.landing h1 {
+  font-size: clamp(38px, 7vw, 72px);
+  font-weight: 900;
+  line-height: 1.05;
+  margin: 16px 0 20px;
+}
+
+.landing h1 em {
+  font-style: normal;
+  color: var(--lima-l);
+}
+
+.landing .sub {
+  color: var(--gris-l);
+  font-size: 18px;
+  max-width: 560px;
+  margin-bottom: 32px;
+}
+
+.landing .cta {
+  display: inline-block;
+  background: var(--lima-l);
+  color: var(--carbon-l);
+  font-weight: 800;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 8px;
+  transition: transform 0.15s;
+}
+
+.landing .cta:hover {
+  transform: translateY(-2px);
+}
+
+.landing .cta-ghost {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 16px 24px;
+  color: var(--lima-l);
+}
+
+/* SECCIONES */
+.landing section {
+  padding: 70px 0;
+}
+
+.landing h2 {
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.landing h2 span {
+  color: var(--lima-l);
+}
+
+.landing .lead {
+  color: var(--gris-l);
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+.landing .lead-centrado {
+  margin: 10px auto 0;
+  max-width: 480px;
+}
+
+/* PLAN */
+.landing .pasos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.landing .paso {
+  background: var(--gris-osc-l);
+  border-radius: 14px;
+  padding: 28px;
+  border: 1px solid #262624;
+}
+
+.landing .paso .num {
+  color: var(--lima-l);
+  font-weight: 900;
+  font-size: 34px;
+}
+
+.landing .paso h3 {
+  font-size: 19px;
+  font-weight: 800;
+  margin: 10px 0 8px;
+}
+
+.landing .paso p {
+  color: var(--gris-l);
+  font-size: 15px;
+}
+
+/* PRODUCTOS */
+.landing .prods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.landing .prod {
+  border: 1px solid #2c2c2a;
+  border-radius: 14px;
+  padding: 28px;
+  position: relative;
+}
+
+.landing .prod.destacado {
+  border: 2px solid var(--lima-l);
+}
+
+.landing .badge {
+  position: absolute;
+  top: -12px;
+  left: 24px;
+  background: var(--lima-l);
+  color: var(--carbon-l);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 6px;
+}
+
+.landing .badge.gris {
+  background: #333;
+  color: var(--gris-l);
+}
+
+.landing .prod h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.landing .prod p {
+  color: var(--gris-l);
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+
+.landing .prod .mini {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--lima-l);
+}
+
+/* CALCULADORA teaser */
+.landing .calc {
+  background: var(--lima-l);
+  color: var(--carbon-l);
+  border-radius: 18px;
+  padding: 44px 36px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.landing .calc h2 {
+  color: var(--carbon-l);
+  margin-bottom: 6px;
+}
+
+.landing .calc p {
+  color: #3a4212;
+  max-width: 420px;
+}
+
+.landing .calc .cta {
+  background: var(--carbon-l);
+  color: var(--lima-l);
+}
+
+/* EMAIL */
+.landing .email-box {
+  text-align: center;
+  background: var(--gris-osc-l);
+  border-radius: 18px;
+  padding: 54px 28px;
+  border: 1px solid #262624;
+}
+
+.landing .email-box form {
+  display: flex;
+  gap: 10px;
+  max-width: 440px;
+  margin: 26px auto 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.landing .email-box input {
+  flex: 1;
+  min-width: 220px;
+  padding: 15px 18px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: var(--carbon-l);
+  color: var(--blanco-l);
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.landing .email-box button {
+  background: var(--lima-l);
+  color: var(--carbon-l);
+  border: none;
+  font-weight: 800;
+  font-size: 15px;
+  padding: 15px 26px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* SOBRE MI */
+.landing .sobre {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.landing .foto,
+.landing .foto-img {
+  border-radius: 14px;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+}
+
+.landing .foto {
+  background: var(--gris-osc-l);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border: 1px dashed #333;
+}
+
+.landing .foto-img {
+  object-fit: cover;
+}
+
+.landing .sobre-lead {
+  margin-bottom: 16px;
+}
+
+.landing .sobre-txt {
+  color: var(--gris-l);
+  font-size: 15px;
+}
+
+.landing .sobre-cta {
+  margin-top: 24px;
+}
+
+@media (max-width: 720px) {
+  .landing .sobre {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* FOOTER */
+.landing footer {
+  border-top: 1px solid #222;
+  padding: 36px 0;
+  color: var(--gris-l);
+  font-size: 14px;
+}
+
+.landing .foot-in {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.landing .foot-in a:hover {
+  color: var(--lima-l);
+}
