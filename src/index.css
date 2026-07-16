@@ -638,6 +638,15 @@ input, select {
   padding-top: 28px;
 }
 
+.disclaimer-link {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+.disclaimer-link:hover {
+  color: var(--lime);
+}
+
 @media (min-width: 700px) {
   .app {
     padding-top: 48px;

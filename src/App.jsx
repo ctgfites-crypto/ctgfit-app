@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Landing from './Landing.jsx'
 import Calculadora from './Calculadora.jsx'
+import Legal from './Legal.jsx'
 
 export default function App() {
   const [ruta, setRuta] = useState(window.location.pathname)
@@ -12,10 +13,13 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    document.title = ruta === '/calculadora'
-      ? 'Calculadora de Macros Gratis | CTG Fit'
+    document.title =
+      ruta === '/calculadora' ? 'Calculadora de Macros Gratis | CTG Fit'
+      : ruta === '/legal' ? 'Aviso legal y privacidad | CTG FIT'
       : 'CTG FIT — Transforma tu físico sin vueltas'
   }, [ruta])
 
-  return ruta === '/calculadora' ? <Calculadora /> : <Landing />
+  if (ruta === '/calculadora') return <Calculadora />
+  if (ruta === '/legal') return <Legal />
+  return <Landing />
 }

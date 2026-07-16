@@ -122,6 +122,15 @@ export default function Landing() {
             <form onSubmit={(e) => { e.preventDefault(); alert('¡Gracias! Te avisaré pronto 💪') }}>
               <input type="email" placeholder="tu@email.com" required aria-label="Tu email" />
               <button type="submit">Apuntarme</button>
+              <label className="rgpd">
+                <input type="checkbox" required />
+                <span>
+                  Acepto la{' '}
+                  <a href="/legal" onClick={(e) => { e.preventDefault(); navegar('/legal') }}>
+                    política de privacidad
+                  </a>
+                </span>
+              </label>
             </form>
           </div>
         </div>
@@ -142,7 +151,7 @@ export default function Landing() {
           <div>
             <h2>Sobre <span>mí</span></h2>
             <p className="lead sobre-lead">
-              Soy Christian, de Alicante. Llevo años obsesionado con el entrenamiento y la nutrición,
+              Soy Christian. Llevo años obsesionado con el entrenamiento y la nutrición,
               y decidí documentar todo mi proceso en redes: lo que funciona, lo que no, y los números
               reales detrás.
             </p>
@@ -160,12 +169,24 @@ export default function Landing() {
       </section>
 
       <footer>
+        <div className="wrap">
+          <p className="foot-disclaimer">
+            La información de CTG Fit tiene fines educativos e informativos y no sustituye el
+            consejo de un médico o nutricionista titulado. Consulta con un profesional antes de
+            empezar cualquier plan de dieta o entrenamiento. Los resultados de la calculadora son
+            estimaciones.
+          </p>
+        </div>
         <div className="foot-in">
           <span>© 2026 CTG FIT</span>
           <span>
             <a href="https://www.tiktok.com/@ctg.fit" target="_blank" rel="noopener noreferrer">TikTok</a>
             {' · '}
             <a href="mailto:ctgfit.contacto@gmail.com">Contacto</a>
+            {' · '}
+            <a href="/legal" onClick={(e) => { e.preventDefault(); navegar('/legal') }}>
+              Aviso legal y privacidad
+            </a>
           </span>
         </div>
       </footer>

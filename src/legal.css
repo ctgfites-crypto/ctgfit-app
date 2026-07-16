@@ -1,0 +1,78 @@
+/* Página legal — scoped bajo .legal */
+.legal {
+  --carbon-lg: #111111;
+  --lima-lg: #c8f542;
+  --gris-lg: #9a9a94;
+  background: var(--carbon-lg);
+  color: #eeeeee;
+  line-height: 1.7;
+  min-height: 100dvh;
+}
+
+.legal .wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+.legal h1 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.legal h1 span {
+  color: var(--lima-lg);
+}
+
+.legal h2 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 36px 0 10px;
+  color: var(--lima-lg);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.legal p,
+.legal li {
+  color: #cccccc;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.legal ul {
+  padding-left: 22px;
+}
+
+.legal a {
+  color: var(--lima-lg);
+}
+
+.legal .back {
+  display: inline-block;
+  margin-bottom: 30px;
+  font-weight: 700;
+  color: var(--lima-lg);
+  text-decoration: none;
+}
+
+.legal .updated {
+  color: var(--gris-lg);
+  font-size: 13px;
+  margin-bottom: 30px;
+}
+
+.legal .box {
+  background: #1a1a18;
+  border: 1px solid #262624;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.legal .box-titulo {
+  margin-top: 0;
+}

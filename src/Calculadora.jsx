@@ -243,8 +243,15 @@ export default function App() {
       )}
 
       <p className="disclaimer">
-        Herramienta educativa. No sustituye el consejo de un profesional sanitario o
-        dietista-nutricionista.
+        Los resultados son estimaciones con fines educativos y no sustituyen el consejo de un
+        profesional.{' '}
+        <a
+          className="disclaimer-link"
+          href="/legal"
+          onClick={(e) => { e.preventDefault(); navegar('/legal') }}
+        >
+          Ver aviso legal
+        </a>.
       </p>
     </div>
   )
