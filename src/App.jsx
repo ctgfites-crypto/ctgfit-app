@@ -13,10 +13,21 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    document.title =
-      ruta === '/calculadora' ? 'Calculadora de Macros Gratis | CTG Fit'
-      : ruta === '/legal' ? 'Aviso legal y privacidad | CTG FIT'
-      : 'CTG FIT — Transforma tu físico sin vueltas'
+    const meta = {
+      '/calculadora': {
+        titulo: 'Calculadora de Macros Gratis | CTG Fit',
+        desc: 'Calcula tus calorías y macros gratis en menos de 1 minuto según tu objetivo: definición, mantenimiento o volumen.',
+      },
+      '/legal': {
+        titulo: 'Aviso legal y privacidad | CTG Fit',
+        desc: 'Aviso legal, política de privacidad y protección de datos (RGPD) de CTG Fit.',
+      },
+    }[ruta] || {
+      titulo: 'CTG FIT — Transforma tu físico sin vueltas',
+      desc: 'Entrenamiento y nutrición sin humo, documentado con datos reales. Guías, plan y calculadora de macros gratis.',
+    }
+    document.title = meta.titulo
+    document.querySelector('meta[name="description"]')?.setAttribute('content', meta.desc)
   }, [ruta])
 
   if (ruta === '/calculadora') return <Calculadora />
