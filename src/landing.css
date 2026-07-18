@@ -48,6 +48,20 @@
   margin: 0 auto;
 }
 
+.landing .logo {
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+.landing .logo span {
+  background: var(--lima-l);
+  color: var(--carbon-l);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
 .landing .nav-logo {
   height: 44px;
   display: block;
@@ -198,6 +212,27 @@
   font-size: 15px;
   padding: 16px 24px;
   color: var(--lima-l);
+}
+
+/* Fade-up al hacer scroll */
+.landing .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.landing .reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* SECCIONES */

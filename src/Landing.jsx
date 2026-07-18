@@ -4,6 +4,7 @@ import Aurora from './components/Aurora.jsx'
 import SplitText from './components/SplitText.jsx'
 import SpotlightCard from './components/SpotlightCard.jsx'
 import FondoImagen from './components/FondoImagen.jsx'
+import Reveal from './components/Reveal.jsx'
 import './landing.css'
 
 function LinkCalc({ className, children }) {
@@ -20,13 +21,23 @@ function LinkCalc({ className, children }) {
 
 export default function Landing() {
   const [fotoOk, setFotoOk] = useState(true)
+  const [logoOk, setLogoOk] = useState(true)
 
   return (
     <div className="landing">
       <nav>
         <div className="nav-in">
           <a href="/" aria-label="CTG Fit — inicio">
-            <img className="nav-logo" src="/assets/logo-horizontal.png" alt="CTG FIT" />
+            {logoOk ? (
+              <img
+                className="nav-logo"
+                src="/assets/logo-horizontal.png"
+                alt="CTG FIT"
+                onError={() => setLogoOk(false)}
+              />
+            ) : (
+              <div className="logo">CTG<span>FIT</span></div>
+            )}
           </a>
           <div className="nav-links">
             <a href="#plan">El plan</a>
@@ -38,7 +49,7 @@ export default function Landing() {
       </nav>
 
       <header className="hero">
-        <FondoImagen src="/assets/bg-hero.webp" overlay={0.6} />
+        <FondoImagen src="/assets/bg-hero.webp" overlay={0.55} />
         <Aurora />
         <div className="wrap">
           <p className="eyebrow">Fitness sin humo · Documentado con datos reales</p>
@@ -59,6 +70,7 @@ export default function Landing() {
       </header>
 
       <section id="plan">
+        <FondoImagen src="/assets/bg-seccion.webp" overlay={0.55} />
         <div className="wrap">
           <h2>El <span>plan</span></h2>
           <p className="lead">Tres pasos. Es lo que sigo yo y lo que documento cada semana en redes.</p>
@@ -83,7 +95,6 @@ export default function Landing() {
       </section>
 
       <section id="recursos">
-        <FondoImagen src="/assets/bg-seccion.webp" overlay={0.6} />
         <div className="wrap">
           <h2>Recursos <span>CTG FIT</span></h2>
           <p className="lead">Lo que hay ahora y lo que viene. Apúntate abajo para enterarte el primero.</p>
@@ -125,7 +136,7 @@ export default function Landing() {
       <section id="lista">
         <div className="wrap">
           <div className="email-box">
-            <FondoImagen src="/assets/bg-email.webp" overlay={0.6} />
+            <FondoImagen src="/assets/bg-email.webp" overlay={0.55} />
             <h2>Únete a la lista <span>CTG</span></h2>
             <p className="lead lead-centrado">
               Un email a la semana con lo mejor: un consejo aplicable, mi progreso real y acceso
