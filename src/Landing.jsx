@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import { navegar } from './router.js'
+import Aurora from './components/Aurora.jsx'
+import SplitText from './components/SplitText.jsx'
+import SpotlightCard from './components/SpotlightCard.jsx'
+import FondoImagen from './components/FondoImagen.jsx'
 import './landing.css'
 
 function LinkCalc({ className, children }) {
@@ -34,9 +38,15 @@ export default function Landing() {
       </nav>
 
       <header className="hero">
+        <FondoImagen src="/assets/bg-hero.webp" overlay={0.6} />
+        <Aurora />
         <div className="wrap">
           <p className="eyebrow">Fitness sin humo · Documentado con datos reales</p>
-          <h1>Transforma tu físico<br /><em>sin vueltas.</em></h1>
+          <h1>
+            <SplitText texto="Transforma tu físico" />
+            <br />
+            <SplitText texto="sin vueltas." acento delayBase={280} />
+          </h1>
           <p className="sub">
             Entrenamiento y nutrición explicados como me hubiese gustado que me los explicaran a mí.
             Sin milagros, sin dietas imposibles: método, datos y mi propio proceso como prueba.
@@ -73,28 +83,29 @@ export default function Landing() {
       </section>
 
       <section id="recursos">
+        <FondoImagen src="/assets/bg-seccion.webp" overlay={0.6} />
         <div className="wrap">
           <h2>Recursos <span>CTG FIT</span></h2>
           <p className="lead">Lo que hay ahora y lo que viene. Apúntate abajo para enterarte el primero.</p>
           <div className="prods">
-            <div className="prod">
+            <SpotlightCard className="prod">
               <span className="badge">Gratis</span>
               <h3>Calculadora de macros</h3>
               <p>Tus calorías y macros en 30 segundos, según tu objetivo: definición, volumen o mantenimiento.</p>
               <LinkCalc className="mini">Ir a la calculadora →</LinkCalc>
-            </div>
-            <div className="prod destacado">
+            </SpotlightCard>
+            <SpotlightCard className="prod destacado">
               <span className="badge">Próximamente</span>
               <h3>Guía de definición CTG</h3>
               <p>El sistema completo que uso yo: cómo calcular, qué comer, cómo entrenar y cómo ajustar semana a semana. Paso a paso.</p>
               <a className="mini" href="#lista">Apúntate a la lista →</a>
-            </div>
-            <div className="prod">
+            </SpotlightCard>
+            <SpotlightCard className="prod">
               <span className="badge gris">En desarrollo</span>
               <h3>Plantillas de entreno</h3>
               <p>Rutinas estructuradas con progresión incluida, para gym completo o material básico.</p>
               <a className="mini" href="#lista">Avísame cuando salga →</a>
-            </div>
+            </SpotlightCard>
           </div>
         </div>
       </section>
@@ -114,6 +125,7 @@ export default function Landing() {
       <section id="lista">
         <div className="wrap">
           <div className="email-box">
+            <FondoImagen src="/assets/bg-email.webp" overlay={0.6} />
             <h2>Únete a la lista <span>CTG</span></h2>
             <p className="lead lead-centrado">
               Un email a la semana con lo mejor: un consejo aplicable, mi progreso real y acceso
