@@ -432,7 +432,7 @@
   padding: 54px 28px;
   border: 1px solid #262624;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .landing .email-box > *:not(.fondo-imagen) {
@@ -583,4 +583,48 @@ iframe[src*="higgsfield" i] {
 
 .landing .foot-in a:hover {
   color: var(--lima-l);
+}
+
+/* MailerLite embed fix */
+.landing .email-box .ml-embedded {
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+}
+
+.landing .email-box .ml-embedded * {
+  box-sizing: border-box;
+}
+
+.landing .email-box .ml-form-embedWrapper {
+  background: transparent !important;
+}
+
+.landing .email-box .ml-form-embedBody {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.landing .email-box .ml-form-embedBody .ml-form-embedContent {
+  display: none !important;
+}
+
+.landing .email-box .ml-form-embedBody input[type="email"] {
+  background: #1a1a1a !important;
+  border: 1px solid #C8F542 !important;
+  color: #ffffff !important;
+  border-radius: 8px !important;
+  font-family: inherit !important;
+}
+
+.landing .email-box .ml-form-embedBody .ml-form-embedSubmit button {
+  background: #C8F542 !important;
+  color: #111111 !important;
+  font-weight: 800 !important;
+  font-family: inherit !important;
+  border-radius: 8px !important;
+}
+
+.landing .email-box #lista {
+  overflow: visible !important;
 }
