@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { navegar } from './router.js'
 import Aurora from './components/Aurora.jsx'
 import SplitText from './components/SplitText.jsx'
@@ -8,27 +8,22 @@ import Reveal from './components/Reveal.jsx'
 import './landing.css'
 
 function MailerLiteForm() {
-  const ref = useRef(null)
   useEffect(() => {
-    const tryInit = () => {
-      if (window.ml && ref.current) {
-        ref.current.innerHTML = ''
-        const div = document.createElement('div')
-        div.className = 'ml-embedded'
-        div.setAttribute('data-form', 'DXZXBO')
-        ref.current.appendChild(div)
-        window.ml('show', 'DXZXBO', true)
-      }
+    // Eliminar script anterior si existe
+    const old = document.querySelector('script[src*="mailerlite"]')
+    if (old) old.remove()
+    // Resetear el objeto ml
+    delete window.ml
+    // Reinyectar el script universal
+    const s = document.createElement('script')
+    s.src = 'https://assets.mailerlite.com/js/universal.js'
+    s.async = true
+    s.onload = () => {
+      if (window.ml) window.ml('account', '2518890')
     }
-    const interval = setInterval(() => {
-      if (window.ml) {
-        tryInit()
-        clearInterval(interval)
-      }
-    }, 200)
-    return () => clearInterval(interval)
+    document.head.appendChild(s)
   }, [])
-  return <div ref={ref}></div>
+  return <div className="ml-embedded" data-form="DXZXBO"></div>
 }
 
 function LinkCalc({ className, children }) {
