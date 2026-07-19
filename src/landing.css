@@ -132,6 +132,17 @@
   inset: 0;
 }
 
+.fondo-imagen::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 220px;
+  height: 36px;
+  background: #111111;
+  z-index: 2;
+}
+
 /* Titular animado por palabras */
 .landing .split-clip {
   display: inline-block;
