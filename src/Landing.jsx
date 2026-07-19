@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { navegar } from './router.js'
 import Aurora from './components/Aurora.jsx'
 import SplitText from './components/SplitText.jsx'
@@ -6,6 +6,24 @@ import SpotlightCard from './components/SpotlightCard.jsx'
 import FondoImagen from './components/FondoImagen.jsx'
 import Reveal from './components/Reveal.jsx'
 import './landing.css'
+
+function MailerLiteForm() {
+  const ref = useRef(null)
+  useEffect(() => {
+    if (window.ml) {
+      window.ml('accounts', '2518890', 'DXZXBO', 'load')
+    } else {
+      const interval = setInterval(() => {
+        if (window.ml) {
+          window.ml('accounts', '2518890', 'DXZXBO', 'load')
+          clearInterval(interval)
+        }
+      }, 300)
+      return () => clearInterval(interval)
+    }
+  }, [])
+  return <div ref={ref} className="ml-embedded" data-form="DXZXBO"></div>
+}
 
 function LinkCalc({ className, children }) {
   return (
@@ -141,7 +159,7 @@ export default function Landing() {
             <p className="lead lead-centrado">
               La Guía de Definición CTG sale el 31 de agosto. Apúntate ahora y sé el primero en acceder.
             </p>
-            <div className="ml-embedded" data-form="DXZXBO"></div>
+            <MailerLiteForm />
           </div>
         </div>
       </section>
