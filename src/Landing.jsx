@@ -10,19 +10,25 @@ import './landing.css'
 function MailerLiteForm() {
   const ref = useRef(null)
   useEffect(() => {
-    if (window.ml) {
-      window.ml('accounts', '2518890', 'DXZXBO', 'load')
-    } else {
-      const interval = setInterval(() => {
-        if (window.ml) {
-          window.ml('accounts', '2518890', 'DXZXBO', 'load')
-          clearInterval(interval)
-        }
-      }, 300)
-      return () => clearInterval(interval)
+    const tryInit = () => {
+      if (window.ml && ref.current) {
+        ref.current.innerHTML = ''
+        const div = document.createElement('div')
+        div.className = 'ml-embedded'
+        div.setAttribute('data-form', 'DXZXBO')
+        ref.current.appendChild(div)
+        window.ml('show', 'DXZXBO', true)
+      }
     }
+    const interval = setInterval(() => {
+      if (window.ml) {
+        tryInit()
+        clearInterval(interval)
+      }
+    }, 200)
+    return () => clearInterval(interval)
   }, [])
-  return <div ref={ref} className="ml-embedded" data-form="DXZXBO"></div>
+  return <div ref={ref}></div>
 }
 
 function LinkCalc({ className, children }) {
