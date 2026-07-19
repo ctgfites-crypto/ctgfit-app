@@ -51,6 +51,7 @@
       }
       var obs = new MutationObserver(killHiggsfield);
       obs.observe(document.documentElement, { childList: true, subtree: true });
+      setTimeout(function() { obs.disconnect(); }, 8000);
       document.addEventListener('DOMContentLoaded', killHiggsfield);
     })();
     </script>
