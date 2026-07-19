@@ -498,6 +498,15 @@
   text-decoration: underline;
 }
 
+/* Higgsfield watermark — parche JS en index.html + CSS de refuerzo */
+[class*="higgsfield" i],
+[id*="higgsfield" i],
+[class*="Higgsfield"],
+[src*="higgsfield" i],
+iframe[src*="higgsfield" i] {
+  display: none !important;
+}
+
 /* MAILERLITE EMBED — sobrescribir estilos inyectados */
 .landing .ml-embedded {
   max-width: 440px;

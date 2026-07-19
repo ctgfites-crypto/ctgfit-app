@@ -28,6 +28,32 @@
     ml('account', '2518890');
     </script>
     <!-- End MailerLite Universal -->
+    <!-- Ocultar marca de agua Higgsfield inyectada por JS -->
+    <script>
+    (function () {
+      function killHiggsfield() {
+        document.querySelectorAll('*').forEach(function (el) {
+          var txt = (el.textContent || '').trim();
+          if (
+            (txt === 'HIGGSFIELD' || txt === 'HIGGSFIELD AI' || txt.startsWith('HIGGSFIELD')) &&
+            el.children.length === 0
+          ) {
+            var target = el.closest('div') || el;
+            target.style.setProperty('display', 'none', 'important');
+          }
+          var st = el.getAttribute && el.getAttribute('style');
+          if (st && (st.includes('position: fixed') || st.includes('position:fixed'))) {
+            if ((el.textContent || '').toLowerCase().includes('higgsfield')) {
+              el.style.setProperty('display', 'none', 'important');
+            }
+          }
+        });
+      }
+      var obs = new MutationObserver(killHiggsfield);
+      obs.observe(document.documentElement, { childList: true, subtree: true });
+      document.addEventListener('DOMContentLoaded', killHiggsfield);
+    })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -137,10 +137,6 @@ export default function Landing() {
         <div className="wrap">
           <div className="email-box">
             <FondoImagen src="/assets/bg-email.webp" overlay={0.55} />
-            <h2>Únete a la lista <span>CTG</span></h2>
-            <p className="lead lead-centrado">
-              La Guía de Definición CTG sale el 31 de agosto. Apúntate ahora y sé el primero en acceder.
-            </p>
             <div className="ml-embedded" data-form="DXZXBO"></div>
           </div>
         </div>
