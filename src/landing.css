@@ -440,7 +440,7 @@
   z-index: 1;
 }
 
-.landing .email-box form {
+.landing .email-box > form {
   display: flex;
   gap: 10px;
   max-width: 440px;
@@ -517,11 +517,32 @@ iframe[src*="higgsfield" i] {
   background: transparent !important;
   border: none !important;
   padding: 0 !important;
+  display: block !important;
+  visibility: visible !important;
 }
 
 .landing .ml-embedded .ml-form-embedBody {
   background: transparent !important;
   padding: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+.landing .ml-embedded form,
+.landing .ml-embedded .ml-block-form {
+  display: block !important;
+  visibility: visible !important;
+}
+
+.landing .ml-embedded .ml-form-fieldRow {
+  display: block !important;
+  visibility: visible !important;
+  margin-bottom: 10px;
+}
+
+.landing .ml-embedded .ml-form-embedSubmit {
+  display: block !important;
+  visibility: visible !important;
 }
 
 .landing .ml-embedded .ml-form-fieldRow input[type="email"],
