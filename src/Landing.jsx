@@ -139,22 +139,9 @@ export default function Landing() {
             <FondoImagen src="/assets/bg-email.webp" overlay={0.55} />
             <h2>Únete a la lista <span>CTG</span></h2>
             <p className="lead lead-centrado">
-              Un email a la semana con lo mejor: un consejo aplicable, mi progreso real y acceso
-              anticipado a las guías cuando salgan.
+              La Guía de Definición CTG sale el 31 de agosto. Apúntate ahora y sé el primero en acceder.
             </p>
-            <form onSubmit={(e) => { e.preventDefault(); alert('¡Gracias! Te avisaré pronto 💪') }}>
-              <input type="email" placeholder="tu@email.com" required aria-label="Tu email" />
-              <button type="submit">Apuntarme</button>
-              <label className="rgpd">
-                <input type="checkbox" required />
-                <span>
-                  Acepto la{' '}
-                  <a href="/legal" onClick={(e) => { e.preventDefault(); navegar('/legal') }}>
-                    política de privacidad
-                  </a>
-                </span>
-              </label>
-            </form>
+            <div className="ml-embedded" data-form="DXZXBO"></div>
           </div>
         </div>
       </section>
