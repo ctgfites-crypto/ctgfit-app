@@ -63,6 +63,7 @@ export default function Landing() {
             <a href="#recursos">Recursos</a>
             <LinkCalc>Calculadora</LinkCalc>
             <a href="#sobre">Sobre mí</a>
+            <a href="/guia" onClick={(e) => { e.preventDefault(); navegar('/guia') }} className="nav-guia">Guía</a>
           </div>
         </div>
       </nav>

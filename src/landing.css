@@ -78,6 +78,20 @@
   color: var(--lima-l);
 }
 
+.landing .nav-links .nav-guia {
+  background: #0BC244;
+  color: #000;
+  font-weight: 800;
+  padding: 5px 14px;
+  border-radius: 6px;
+  transition: opacity 0.15s;
+}
+
+.landing .nav-links .nav-guia:hover {
+  color: #000;
+  opacity: 0.85;
+}
+
 @media (max-width: 560px) {
   .landing .nav-links {
     gap: 16px;

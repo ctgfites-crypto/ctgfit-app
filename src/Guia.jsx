@@ -1,7 +1,32 @@
+import { useEffect } from 'react'
 import { navegar } from './router.js'
 import './guia.css'
 
-const GUMROAD_URL = 'https://ctgfit.gumroad.com/l/guia-definicion'
+function setMeta(property, content) {
+  const sel = property.startsWith('og:')
+    ? `meta[property="${property}"]`
+    : `meta[name="${property}"]`
+  let el = document.querySelector(sel)
+  if (!el) {
+    el = document.createElement('meta')
+    property.startsWith('og:')
+      ? el.setAttribute('property', property)
+      : el.setAttribute('name', property)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('content', content)
+  return el
+}
+
+const OG_TAGS = [
+  ['og:title',       'Guía de Definición CTG Fit'],
+  ['og:description', '8 capítulos. Calorías, macros, entrenamiento y los errores que arruinan el 90% de las definiciones.'],
+  ['og:image',       'https://ctgfit.es/assets/cover-guia.png'],
+  ['og:url',         'https://ctgfit.es/guia'],
+  ['description',    'La guía de definición CTG Fit: 8 capítulos con el sistema completo de calorías, macros y entrenamiento.'],
+]
+
+const GUMROAD_URL = 'https://ctgfit6.gumroad.com/l/kugjcq'
 
 const CAPITULOS = [
   'Calcula tus números',
@@ -21,6 +46,20 @@ function Badge() {
 }
 
 export default function Guia() {
+  useEffect(() => {
+    const prev = {}
+    OG_TAGS.forEach(([key]) => {
+      const sel = key.startsWith('og:') ? `meta[property="${key}"]` : `meta[name="${key}"]`
+      prev[key] = document.querySelector(sel)?.getAttribute('content') ?? null
+    })
+    OG_TAGS.forEach(([key, val]) => setMeta(key, val))
+    return () => {
+      OG_TAGS.forEach(([key]) => {
+        if (prev[key] !== null) setMeta(key, prev[key])
+      })
+    }
+  }, [])
+
   return (
     <div className="guia-page">
       <nav className="guia-nav">

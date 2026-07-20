@@ -6,3 +6,5 @@ dist
 .env
 .env.*
 test-results/
+
+scripts/_guia-tmp.html
