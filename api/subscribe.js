@@ -9,44 +9,45 @@ export default async function handler(req, res) {
   }
 
   const apiKey = process.env.MAILERLITE_API_KEY?.trim()
-  const groupId = process.env.MAILERLITE_GROUP_ID?.trim() || '193426212975019303'
+  const groupId = (process.env.MAILERLITE_GROUP_ID?.trim() || '193426212975019303').replace(/['"]/g, '')
 
   if (!apiKey) {
     console.error('subscribe: MAILERLITE_API_KEY no configurado')
     return res.status(500).json({ error: 'Configuración incompleta' })
   }
 
-  console.log('subscribe: attempt', { email, groupId })
+  console.log('subscribe: attempt', { email, groupId, groupIdLen: groupId.length })
 
   try {
-    // groupId es un entero de 64 bits que supera Number.MAX_SAFE_INTEGER.
-    // JSON.stringify lo redondearía; lo inyectamos como literal numérico crudo.
-    const rawBody = `{"email":${JSON.stringify(email)},"groups":[${groupId}]}`
+    // Paso 1: crear/actualizar subscriber
+    // El group ID de MailerLite v2 es un entero de 64-bit (> MAX_SAFE_INTEGER).
+    // Usamos string concat para evitar pérdida de precisión en JSON.stringify.
+    const emailSafe = JSON.stringify(email)
+    const rawBody = `{"email":${emailSafe},"groups":[${groupId}]}`
+
+    console.log('subscribe: rawBody', rawBody)
 
     const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: `Bearer ${apiKey}`,
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
       },
       body: rawBody,
     })
 
-    const mlBody = await mlRes.json().catch(() => ({}))
+    const mlText = await mlRes.text()
+    let mlBody = {}
+    try { mlBody = JSON.parse(mlText) } catch (_) { mlBody = { raw: mlText } }
+
+    console.log('subscribe: mailerlite response', { status: mlRes.status, body: mlText })
 
     if (!mlRes.ok) {
-      console.error('subscribe: mailerlite error', {
-        status: mlRes.status,
-        body: JSON.stringify(mlBody),
-        groupId,
-      })
-      // Devolver el mensaje real de MailerLite para facilitar debugging
-      const detail = mlBody?.message || mlBody?.error || JSON.stringify(mlBody)
+      const detail = mlBody?.message || mlBody?.error || mlText
       return res.status(mlRes.status).json({ error: 'Error al suscribir', detail })
     }
 
-    console.log('subscribe: ok', { email })
     return res.status(200).json({ ok: true })
   } catch (err) {
     console.error('subscribe: network error', { message: err.message })
