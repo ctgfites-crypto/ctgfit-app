@@ -19,10 +19,9 @@ export default async function handler(req, res) {
   console.log('subscribe: attempt', { email, groupId })
 
   try {
-    const payload = {
-      email,
-      groups: [groupId],
-    }
+    // groupId es un entero de 64 bits que supera Number.MAX_SAFE_INTEGER.
+    // JSON.stringify lo redondearía; lo inyectamos como literal numérico crudo.
+    const rawBody = `{"email":${JSON.stringify(email)},"groups":[${groupId}]}`
 
     const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
@@ -31,7 +30,7 @@ export default async function handler(req, res) {
         Accept: 'application/json',
         Authorization: `Bearer ${apiKey}`,
       },
-      body: JSON.stringify(payload),
+      body: rawBody,
     })
 
     const mlBody = await mlRes.json().catch(() => ({}))
