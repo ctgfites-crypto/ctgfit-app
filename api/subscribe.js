@@ -12,45 +12,52 @@ export default async function handler(req, res) {
   const groupId = (process.env.MAILERLITE_GROUP_ID?.trim() || '193426212975019303').replace(/['"]/g, '')
 
   if (!apiKey) {
-    console.error('subscribe: MAILERLITE_API_KEY no configurado')
     return res.status(500).json({ error: 'Configuración incompleta' })
   }
 
-  console.log('subscribe: attempt', { email, groupId, groupIdLen: groupId.length })
+  const headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${apiKey}`,
+  }
 
+  // Paso 1 — crear o actualizar subscriber (sin grupo, para aislar)
+  let subscriberId = null
   try {
-    // Paso 1: crear/actualizar subscriber
-    // El group ID de MailerLite v2 es un entero de 64-bit (> MAX_SAFE_INTEGER).
-    // Usamos string concat para evitar pérdida de precisión en JSON.stringify.
-    const emailSafe = JSON.stringify(email)
-    const rawBody = `{"email":${emailSafe},"groups":[${groupId}]}`
-
-    console.log('subscribe: rawBody', rawBody)
-
-    const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: rawBody,
+    const body1 = JSON.stringify({ email })
+    const r1 = await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST', headers, body: body1,
     })
+    const t1 = await r1.text()
+    console.log('subscribe step1', { status: r1.status, body: t1 })
 
-    const mlText = await mlRes.text()
-    let mlBody = {}
-    try { mlBody = JSON.parse(mlText) } catch (_) { mlBody = { raw: mlText } }
-
-    console.log('subscribe: mailerlite response', { status: mlRes.status, body: mlText })
-
-    if (!mlRes.ok) {
-      const detail = mlBody?.message || mlBody?.error || mlText
-      return res.status(mlRes.status).json({ error: 'Error al suscribir', detail })
+    if (!r1.ok) {
+      let d = {}
+      try { d = JSON.parse(t1) } catch (_) {}
+      return res.status(r1.status).json({
+        error: 'Error al suscribir',
+        detail: d?.message || t1,
+        debug_sent: body1,
+      })
     }
 
-    return res.status(200).json({ ok: true })
+    const d1 = JSON.parse(t1)
+    subscriberId = d1?.data?.id
   } catch (err) {
-    console.error('subscribe: network error', { message: err.message })
     return res.status(500).json({ error: 'Error de red', detail: err.message })
   }
+
+  // Paso 2 — añadir al grupo usando ID de subscriber
+  if (subscriberId && groupId) {
+    try {
+      const r2 = await fetch(
+        `https://connect.mailerlite.com/api/subscribers/${subscriberId}/groups`,
+        { method: 'POST', headers, body: JSON.stringify({ groups: [groupId] }) }
+      )
+      const t2 = await r2.text()
+      console.log('subscribe step2', { status: r2.status, body: t2 })
+    } catch (_) {}
+  }
+
+  return res.status(200).json({ ok: true })
 }
