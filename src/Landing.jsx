@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react'
 import { navegar } from './router.js'
-import Aurora from './components/Aurora.jsx'
-import SplitText from './components/SplitText.jsx'
 import SpotlightCard from './components/SpotlightCard.jsx'
 import FondoImagen from './components/FondoImagen.jsx'
-import Reveal from './components/Reveal.jsx'
 import './landing.css'
 
 function MailerLiteForm() {
@@ -136,10 +133,10 @@ export default function Landing() {
               <LinkCalc className="mini">Ir a la calculadora →</LinkCalc>
             </SpotlightCard>
             <SpotlightCard className="prod destacado">
-              <span className="badge">Próximamente</span>
+              <span className="badge">Disponible</span>
               <h3>Guía de definición CTG</h3>
               <p>El sistema completo que uso yo: cómo calcular, qué comer, cómo entrenar y cómo ajustar semana a semana. Paso a paso.</p>
-              <a className="mini" href="#lista">Apúntate a la lista →</a>
+              <a className="mini" href="/guia" onClick={(e) => { e.preventDefault(); navegar('/guia') }}>Ver la guía →</a>
             </SpotlightCard>
             <SpotlightCard className="prod">
               <span className="badge gris">En desarrollo</span>

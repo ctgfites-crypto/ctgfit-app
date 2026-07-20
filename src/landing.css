@@ -1,7 +1,7 @@
 /* Landing CTG FIT — estilos scoped bajo .landing */
 .landing {
   --carbon-l: #111111;
-  --lima-l: #c8f542;
+  --lima-l: #0BC244;
   --blanco-l: #ffffff;
   --gris-l: #9a9a94;
   --gris-osc-l: #1d1d1b;
@@ -97,6 +97,7 @@
     gap: 16px;
     font-size: 13px;
   }
+  .landing .nav-links a:nth-child(1),
   .landing .nav-links a:nth-child(4) {
     display: none;
   }
@@ -510,7 +511,7 @@
     border-radius: inherit;
     background: radial-gradient(
       320px circle at var(--mx, 50%) var(--my, 50%),
-      rgba(200, 245, 66, 0.1),
+      rgba(11, 194, 68, 0.1),
       transparent 65%
     );
     opacity: 0;
@@ -523,7 +524,7 @@
   }
 
   .landing .prod.spotlight:hover {
-    border-color: rgba(200, 245, 66, 0.45);
+    border-color: rgba(11, 194, 68, 0.45);
     transform: translateY(-3px);
   }
 }
@@ -787,14 +788,14 @@ iframe[src*="higgsfield" i] {
 
 .landing .email-box .ml-form-embedBody input[type="email"] {
   background: #1a1a1a !important;
-  border: 1px solid #C8F542 !important;
+  border: 1px solid #0BC244 !important;
   color: #ffffff !important;
   border-radius: 8px !important;
   font-family: inherit !important;
 }
 
 .landing .email-box .ml-form-embedBody .ml-form-embedSubmit button {
-  background: #C8F542 !important;
+  background: #0BC244 !important;
   color: #111111 !important;
   font-weight: 800 !important;
   font-family: inherit !important;
