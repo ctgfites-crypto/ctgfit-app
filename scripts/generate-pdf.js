@@ -143,7 +143,7 @@ const fullHtml = `<!DOCTYPE html>
     line-height: 1;
     letter-spacing: -2px;
   }
-  .cover-title span { color: #0BC244; }
+  .cover-title span { color: #CDFF00; }
   .cover-sub {
     font-size: 13pt;
     font-weight: 600;
@@ -163,12 +163,12 @@ const fullHtml = `<!DOCTYPE html>
   .chapter-num {
     font-size: 9pt;
     font-weight: 800;
-    color: #0BC244;
+    color: #CDFF00;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 12px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #0BC244;
+    border-bottom: 1px solid #CDFF00;
   }
 
   .chapter-body { color: #e0e0e0; }
@@ -192,7 +192,7 @@ const fullHtml = `<!DOCTYPE html>
   h3 {
     font-size: 11pt;
     font-weight: 700;
-    color: #0BC244;
+    color: #CDFF00;
     margin: 20px 0 6px;
   }
 
@@ -210,7 +210,7 @@ const fullHtml = `<!DOCTYPE html>
 
   blockquote {
     background: #111;
-    border-left: 3px solid #0BC244;
+    border-left: 3px solid #CDFF00;
     padding: 10px 16px;
     margin: 12px 0;
     font-size: 9pt;
@@ -223,7 +223,7 @@ const fullHtml = `<!DOCTYPE html>
 
   code {
     background: #1a1a1a;
-    color: #0BC244;
+    color: #CDFF00;
     padding: 1px 5px;
     border-radius: 3px;
     font-family: monospace;
@@ -237,12 +237,12 @@ const fullHtml = `<!DOCTYPE html>
     font-size: 9.5pt;
   }
   td, th {
-    border: 1px solid #0BC244;
+    border: 1px solid #CDFF00;
     padding: 7px 10px;
     background: #1a1a1a;
     text-align: left;
   }
-  thead td { background: #0a2a14; color: #0BC244; font-weight: 700; }
+  thead td { background: #1a2100; color: #CDFF00; font-weight: 700; }
 
   /* ── Footer ── */
   .footer {

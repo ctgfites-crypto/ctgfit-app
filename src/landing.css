@@ -1,7 +1,7 @@
 /* Landing CTG FIT — estilos scoped bajo .landing */
 .landing {
   --carbon-l: #111111;
-  --lima-l: #0BC244;
+  --lima-l: #CDFF00;
   --blanco-l: #ffffff;
   --gris-l: #9a9a94;
   --gris-osc-l: #1d1d1b;
@@ -79,7 +79,7 @@
 }
 
 .landing .nav-links .nav-guia {
-  background: #0BC244;
+  background: #CDFF00;
   color: #000;
   font-weight: 800;
   padding: 5px 14px;
@@ -184,7 +184,7 @@
 .landing .hero-eyebrow {
   font-size: 11px;
   font-weight: 800;
-  color: #0BC244;
+  color: #CDFF00;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   margin-bottom: 18px;
@@ -231,13 +231,13 @@
   width: 248px;
   height: 500px;
   border-radius: 42px;
-  border: 3px solid #0BC244;
+  border: 3px solid #CDFF00;
   background: #111;
   overflow: hidden;
   box-shadow:
     0 0 0 6px #0a0a0a,
-    0 0 0 8px rgba(11, 194, 68, 0.22),
-    0 24px 64px rgba(11, 194, 68, 0.14),
+    0 0 0 8px rgba(205, 255, 0, 0.22),
+    0 24px 64px rgba(205, 255, 0, 0.14),
     0 8px 24px rgba(0, 0, 0, 0.8);
 }
 
@@ -511,7 +511,7 @@
     border-radius: inherit;
     background: radial-gradient(
       320px circle at var(--mx, 50%) var(--my, 50%),
-      rgba(11, 194, 68, 0.1),
+      rgba(205, 255, 0, 0.1),
       transparent 65%
     );
     opacity: 0;
@@ -524,7 +524,7 @@
   }
 
   .landing .prod.spotlight:hover {
-    border-color: rgba(11, 194, 68, 0.45);
+    border-color: rgba(205, 255, 0, 0.45);
     transform: translateY(-3px);
   }
 }

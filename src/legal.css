@@ -1,7 +1,7 @@
 /* Página legal — scoped bajo .legal */
 .legal {
   --carbon-lg: #111111;
-  --lima-lg: #c8f542;
+  --lima-lg: #CDFF00;
   --gris-lg: #9a9a94;
   background: var(--carbon-lg);
   color: #eeeeee;

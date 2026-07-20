@@ -15,7 +15,7 @@ export default function Gracias() {
       <section style={{ padding: '80px 0 40px', textAlign: 'center' }}>
         <div className="guia-wrap">
           <div style={{ fontSize: 64, marginBottom: 24 }}>✓</div>
-          <h1 style={{ color: '#0BC244', fontSize: 'clamp(28px,5vw,44px)', fontWeight: 900, marginBottom: 16 }}>
+          <h1 style={{ color: '#CDFF00', fontSize: 'clamp(28px,5vw,44px)', fontWeight: 900, marginBottom: 16 }}>
             ¡Ya estás apuntado!
           </h1>
           <p style={{ fontSize: 18, color: '#e0e0e0', marginBottom: 8 }}>
@@ -43,7 +43,7 @@ export default function Gracias() {
               onClick={(e) => { e.preventDefault(); navegar('/calculadora') }}
               style={{
                 display: 'inline-block',
-                background: '#0BC244',
+                background: '#CDFF00',
                 color: '#000',
                 fontWeight: 800,
                 fontSize: 15,
@@ -62,7 +62,7 @@ export default function Gracias() {
               href={GUMROAD_URL}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: '#0BC244', textDecoration: 'underline' }}
+              style={{ color: '#CDFF00', textDecoration: 'underline' }}
             >
               Cómprala ahora por 9,99&nbsp;€
             </a>
