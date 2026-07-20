@@ -8,39 +8,49 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Email inválido' })
   }
 
-  const apiKey = process.env.MAILERLITE_API_KEY
-  const groupId = process.env.MAILERLITE_GROUP_ID
+  const apiKey = process.env.MAILERLITE_API_KEY?.trim()
+  const groupId = process.env.MAILERLITE_GROUP_ID?.trim() || '193426212975019303'
 
   if (!apiKey) {
-    console.error('email_submit_error: MAILERLITE_API_KEY no configurado')
+    console.error('subscribe: MAILERLITE_API_KEY no configurado')
     return res.status(500).json({ error: 'Configuración incompleta' })
   }
 
-  console.log('email_submit_attempt', { email })
+  console.log('subscribe: attempt', { email, groupId })
 
   try {
-    const body = { email }
-    if (groupId) body.groups = [groupId]
+    const payload = {
+      email,
+      groups: [groupId],
+    }
 
-    const r = await fetch('https://connect.mailerlite.com/api/subscribers', {
+    const mlRes = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
         Authorization: `Bearer ${apiKey}`,
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(payload),
     })
 
-    if (!r.ok) {
-      const text = await r.text()
-      console.error('email_submit_error', { status: r.status, body: text })
-      return res.status(r.status).json({ error: 'Error al suscribir' })
+    const mlBody = await mlRes.json().catch(() => ({}))
+
+    if (!mlRes.ok) {
+      console.error('subscribe: mailerlite error', {
+        status: mlRes.status,
+        body: JSON.stringify(mlBody),
+        groupId,
+      })
+      // Devolver el mensaje real de MailerLite para facilitar debugging
+      const detail = mlBody?.message || mlBody?.error || JSON.stringify(mlBody)
+      return res.status(mlRes.status).json({ error: 'Error al suscribir', detail })
     }
 
-    console.log('email_submit_success', { email })
+    console.log('subscribe: ok', { email })
     return res.status(200).json({ ok: true })
   } catch (err) {
-    console.error('email_submit_error', { message: err.message })
-    return res.status(500).json({ error: 'Error de red' })
+    console.error('subscribe: network error', { message: err.message })
+    return res.status(500).json({ error: 'Error de red', detail: err.message })
   }
 }
