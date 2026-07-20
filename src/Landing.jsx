@@ -20,8 +20,8 @@ function EmailForm() {
       })
       const data = await r.json()
       if (r.ok) {
-        setEstado('ok')
-        setMsg('¡Apuntado! Te avisamos cuando la guía esté disponible.')
+        navegar('/gracias')
+        return
       } else {
         setEstado('error')
         setMsg(data.error || 'Algo salió mal. Inténtalo de nuevo.')

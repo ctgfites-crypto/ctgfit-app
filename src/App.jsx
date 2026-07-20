@@ -3,6 +3,7 @@ import Landing from './Landing.jsx'
 import Calculadora from './Calculadora.jsx'
 import Legal from './Legal.jsx'
 import Guia from './Guia.jsx'
+import Gracias from './Gracias.jsx'
 
 export default function App() {
   const [ruta, setRuta] = useState(window.location.pathname)
@@ -27,6 +28,10 @@ export default function App() {
         titulo: 'Guía de Definición CTG Fit — 8 capítulos sin rodeos',
         desc: 'La guía completa para definir sin perder músculo: macros, entrenamiento, ajustes y plantillas. PDF descargable.',
       },
+      '/gracias': {
+        titulo: 'Apuntado — CTG FIT',
+        desc: 'Estás en la lista. Te avisamos cuando la Guía de Definición CTG esté disponible.',
+      },
     }[ruta] || {
       titulo: 'CTG FIT — Transforma tu físico sin vueltas',
       desc: 'Entrenamiento y nutrición sin humo, documentado con datos reales. Guías, plan y calculadora de macros gratis.',
@@ -38,5 +43,6 @@ export default function App() {
   if (ruta === '/calculadora') return <Calculadora />
   if (ruta === '/legal') return <Legal />
   if (ruta === '/guia') return <Guia />
+  if (ruta === '/gracias') return <Gracias />
   return <Landing />
 }
