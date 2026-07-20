@@ -617,16 +617,16 @@
   z-index: 1;
 }
 
-.landing .email-box > form {
+.landing .email-form {
   display: flex;
   gap: 10px;
-  max-width: 440px;
+  max-width: 480px;
   margin: 26px auto 0;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.landing .email-box input {
+.landing .email-form input[type="email"] {
   flex: 1;
   min-width: 220px;
   padding: 15px 18px;
@@ -636,9 +636,15 @@
   color: var(--blanco-l);
   font-size: 15px;
   font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
 }
 
-.landing .email-box button {
+.landing .email-form input[type="email"]:focus {
+  border-color: var(--lima-l);
+}
+
+.landing .email-form button {
   background: var(--lima-l);
   color: var(--carbon-l);
   border: none;
@@ -648,31 +654,26 @@
   border-radius: 8px;
   cursor: pointer;
   font-family: inherit;
+  transition: opacity 0.15s;
 }
 
-.landing .rgpd {
-  flex-basis: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 13px;
-  color: var(--gris-l);
-  cursor: pointer;
-  margin-top: 4px;
+.landing .email-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-.landing .rgpd input {
-  min-width: 0;
-  width: 16px;
-  height: 16px;
-  accent-color: var(--lima-l);
-  flex: none;
-}
-
-.landing .rgpd a {
+.landing .email-ok {
+  margin-top: 20px;
   color: var(--lima-l);
-  text-decoration: underline;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.landing .email-err {
+  flex-basis: 100%;
+  margin-top: 8px;
+  color: #ff6b6b;
+  font-size: 14px;
 }
 
 /* Higgsfield watermark — parche JS en index.html + CSS de refuerzo */
@@ -762,46 +763,3 @@ iframe[src*="higgsfield" i] {
   color: var(--lima-l);
 }
 
-/* MailerLite embed fix */
-.landing .email-box .ml-embedded {
-  position: relative;
-  z-index: 2;
-  margin-top: 20px;
-}
-
-.landing .email-box .ml-embedded * {
-  box-sizing: border-box;
-}
-
-.landing .email-box .ml-form-embedWrapper {
-  background: transparent !important;
-}
-
-.landing .email-box .ml-form-embedBody {
-  background: transparent !important;
-  padding: 0 !important;
-}
-
-.landing .email-box .ml-form-embedBody .ml-form-embedContent {
-  display: none !important;
-}
-
-.landing .email-box .ml-form-embedBody input[type="email"] {
-  background: #1a1a1a !important;
-  border: 1px solid #0BC244 !important;
-  color: #ffffff !important;
-  border-radius: 8px !important;
-  font-family: inherit !important;
-}
-
-.landing .email-box .ml-form-embedBody .ml-form-embedSubmit button {
-  background: #0BC244 !important;
-  color: #111111 !important;
-  font-weight: 800 !important;
-  font-family: inherit !important;
-  border-radius: 8px !important;
-}
-
-.landing .email-box #lista {
-  overflow: visible !important;
-}

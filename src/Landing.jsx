@@ -4,23 +4,54 @@ import SpotlightCard from './components/SpotlightCard.jsx'
 import FondoImagen from './components/FondoImagen.jsx'
 import './landing.css'
 
-function MailerLiteForm() {
-  useEffect(() => {
-    // Eliminar script anterior si existe
-    const old = document.querySelector('script[src*="mailerlite"]')
-    if (old) old.remove()
-    // Resetear el objeto ml
-    delete window.ml
-    // Reinyectar el script universal
-    const s = document.createElement('script')
-    s.src = 'https://assets.mailerlite.com/js/universal.js'
-    s.async = true
-    s.onload = () => {
-      if (window.ml) window.ml('account', '2518890')
+function EmailForm() {
+  const [email, setEmail] = useState('')
+  const [estado, setEstado] = useState(null)
+  const [msg, setMsg] = useState('')
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setEstado('cargando')
+    try {
+      const r = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await r.json()
+      if (r.ok) {
+        setEstado('ok')
+        setMsg('¡Apuntado! Te avisamos cuando la guía esté disponible.')
+      } else {
+        setEstado('error')
+        setMsg(data.error || 'Algo salió mal. Inténtalo de nuevo.')
+      }
+    } catch {
+      setEstado('error')
+      setMsg('Error de conexión. Inténtalo de nuevo.')
     }
-    document.head.appendChild(s)
-  }, [])
-  return <div className="ml-embedded" data-form="DXZXBO"></div>
+  }
+
+  if (estado === 'ok') {
+    return <p className="email-ok">{msg}</p>
+  }
+
+  return (
+    <form className="email-form" onSubmit={handleSubmit}>
+      <input
+        type="email"
+        placeholder="tu@email.com"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        disabled={estado === 'cargando'}
+      />
+      <button type="submit" disabled={estado === 'cargando'}>
+        {estado === 'cargando' ? 'Enviando…' : 'Apúntame →'}
+      </button>
+      {estado === 'error' && <p className="email-err">{msg}</p>}
+    </form>
+  )
 }
 
 function LinkCalc({ className, children }) {
@@ -168,7 +199,7 @@ export default function Landing() {
             <p className="lead lead-centrado">
               La Guía de Definición CTG sale el 31 de agosto. Apúntate ahora y sé el primero en acceder.
             </p>
-            <MailerLiteForm />
+            <EmailForm />
           </div>
         </div>
       </section>
