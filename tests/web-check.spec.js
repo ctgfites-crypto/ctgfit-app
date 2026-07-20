@@ -7,10 +7,9 @@ const BASE = 'http://localhost:5199'
 test('home: carga y titular visible', async ({ page }) => {
   await page.goto(BASE)
   await expect(page).toHaveTitle(/CTG FIT/)
-  // SplitText anima por palabras; esperamos que el texto completo esté en el DOM
   const h1 = page.locator('h1')
-  await expect(h1).toContainText('Transforma tu físico')
-  await expect(h1).toContainText('sin vueltas')
+  await expect(h1).toContainText('Calcula tus macros')
+  await expect(h1).toContainText('en 30 segundos')
 })
 
 test('home: nav con los 4 enlaces', async ({ page }) => {

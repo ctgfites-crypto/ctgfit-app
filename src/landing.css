@@ -91,9 +91,94 @@
 /* HERO */
 .landing .hero {
   position: relative;
-  padding: 90px 0 70px;
-  text-align: left;
+  padding: 80px 0 60px;
+  background: #0a0a0a;
   overflow: hidden;
+}
+
+@keyframes hero-sube {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.landing .hero-fade {
+  opacity: 0;
+  animation: hero-sube 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing .hero-fade { opacity: 1; animation: none; }
+}
+
+.landing .hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.landing .hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.landing .hero-acento {
+  color: #0BC244;
+}
+
+/* Marco de móvil con CSS puro */
+.landing .hero-mockup {
+  display: flex;
+  justify-content: center;
+}
+
+.landing .movil-frame {
+  position: relative;
+  width: 240px;
+  border-radius: 40px;
+  border: 2px solid #0BC244;
+  box-shadow:
+    0 0 0 6px #0a0a0a,
+    0 0 0 8px rgba(11, 194, 68, 0.25),
+    0 24px 60px rgba(11, 194, 68, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  background: #000;
+}
+
+.landing .movil-frame::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 6px;
+  background: #1a1a1a;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.landing .movil-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 38px;
+}
+
+@media (max-width: 768px) {
+  .landing .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+  .landing .hero-text { align-items: center; }
+  .landing .hero-mockup { order: -1; }
+  .landing .movil-frame { width: 200px; }
+  .landing .sub { margin: 0 auto; }
 }
 
 .landing .hero .wrap {

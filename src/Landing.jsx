@@ -68,23 +68,34 @@ export default function Landing() {
       </nav>
 
       <header className="hero">
-        <FondoImagen src="/assets/bg-hero.webp" overlay={0.55} />
         <Aurora />
-        <div className="wrap">
-          <p className="eyebrow">Fitness sin humo · Documentado con datos reales</p>
-          <h1>
-            <SplitText texto="Transforma tu físico" />
-            <br />
-            <SplitText texto="sin vueltas." acento delayBase={280} />
-          </h1>
-          <p className="sub">
-            Entrenamiento y nutrición explicados como me hubiese gustado que me los explicaran a mí.
-            Sin milagros, sin dietas imposibles: método, datos y mi propio proceso como prueba.
-          </p>
-          <a className="cta" href="#recursos">Empieza gratis</a>
-          <a className="cta-ghost" href="https://www.tiktok.com/@ctg.fit" target="_blank" rel="noopener noreferrer">
-            Ver mi contenido →
-          </a>
+        <div className="wrap hero-grid">
+          <div className="hero-text">
+            <p className="eyebrow hero-fade" style={{ animationDelay: '0ms' }}>
+              Fitness sin humo · Documentado con datos reales
+            </p>
+            <h1 className="hero-fade" style={{ animationDelay: '80ms' }}>
+              Calcula tus macros<br />
+              <span className="hero-acento">en 30 segundos</span>
+            </h1>
+            <p className="sub hero-fade" style={{ animationDelay: '200ms' }}>
+              Sin contar calorías. Sin adivinar.<br />
+              Solo tus números exactos.
+            </p>
+            <LinkCalc className="cta hero-fade" style={{ animationDelay: '340ms' }}>
+              Calcular gratis →
+            </LinkCalc>
+          </div>
+          <div className="hero-mockup hero-fade" style={{ animationDelay: '480ms' }}>
+            <div className="movil-frame">
+              <img
+                src="/assets/mockup-app.png"
+                alt="Captura de la calculadora CTG Fit"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+          </div>
         </div>
       </header>
 
