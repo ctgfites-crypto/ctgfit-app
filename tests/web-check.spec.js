@@ -8,8 +8,7 @@ test('home: carga y titular visible', async ({ page }) => {
   await page.goto(BASE)
   await expect(page).toHaveTitle(/CTG FIT/)
   const h1 = page.locator('h1')
-  await expect(h1).toContainText('Calcula tus macros')
-  await expect(h1).toContainText('en 30 segundos')
+  await expect(h1).toContainText('El sistema que te dice exactamente qué comer')
 })
 
 test('home: nav con los 4 enlaces', async ({ page }) => {
