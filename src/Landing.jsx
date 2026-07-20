@@ -68,26 +68,25 @@ export default function Landing() {
       </nav>
 
       <header className="hero">
-        <Aurora />
+        <div className="hero-grain" aria-hidden="true" />
         <div className="wrap hero-grid">
           <div className="hero-text">
-            <p className="eyebrow hero-fade" style={{ animationDelay: '0ms' }}>
-              Fitness sin humo · Documentado con datos reales
+            <p className="hero-eyebrow hero-anim-up">
+              Calcula tus macros
             </p>
-            <h1 className="hero-fade" style={{ animationDelay: '80ms' }}>
-              Calcula tus macros<br />
-              <span className="hero-acento">en 30 segundos</span>
+            <h1 className="hero-anim-up">
+              El sistema que te dice exactamente qué comer
             </h1>
-            <p className="sub hero-fade" style={{ animationDelay: '200ms' }}>
-              Sin contar calorías. Sin adivinar.<br />
-              Solo tus números exactos.
+            <p className="hero-sub hero-anim-up">
+              Sin adivinar. Sin restricciones extremas. Solo tus números.
             </p>
-            <LinkCalc className="cta hero-fade" style={{ animationDelay: '340ms' }}>
-              Calcular gratis →
-            </LinkCalc>
+            <div className="hero-cta-group hero-anim-btn">
+              <LinkCalc className="cta">Calcular gratis →</LinkCalc>
+              <span className="hero-nota">Gratis · Sin registro · En 30 segundos</span>
+            </div>
           </div>
-          <div className="hero-mockup hero-fade" style={{ animationDelay: '480ms' }}>
-            <div className="movil-frame">
+          <div className="hero-mockup hero-anim-right">
+            <div className="iphone-frame">
               <img
                 src="/assets/mockup-app.png"
                 alt="Captura de la calculadora CTG Fit"
