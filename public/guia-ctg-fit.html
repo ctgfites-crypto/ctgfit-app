@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-size: 15px;
+  line-height: 1.8;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── PORTADA ── */
+.cover {
+  page-break-after: always;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  gap: 0;
+  position: relative;
+}
+.cover-ctg {
+  font-size: 150px;
+  font-weight: 900;
+  color: #CDFF00;
+  letter-spacing: -4px;
+  line-height: 1;
+}
+.cover-line {
+  width: 160px;
+  height: 2px;
+  background: #CDFF00;
+  margin: 24px auto 28px;
+}
+.cover-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.cover-sub {
+  font-size: 17px;
+  color: #888888;
+  margin-top: 14px;
+  font-weight: 400;
+}
+.cover-footer {
+  position: absolute;
+  bottom: 48px;
+  text-align: center;
+}
+.cover-url {
+  font-size: 13px;
+  font-weight: 800;
+  color: #CDFF00;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.cover-year {
+  font-size: 11px;
+  color: #444;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+
+/* ── ÍNDICE ── */
+.toc {
+  page-break-after: always;
+  padding: 64px 60px;
+  min-height: 100vh;
+}
+.toc-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 40px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #111;
+}
+.toc-num {
+  font-size: 12px;
+  font-weight: 800;
+  color: #CDFF00;
+  letter-spacing: 2px;
+  min-width: 32px;
+}
+.toc-name {
+  font-size: 16px;
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+/* ── CAPÍTULOS ── */
+.chapter {
+  page-break-before: always;
+  padding: 60px 60px 80px;
+  position: relative;
+}
+.ch-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #CDFF00;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.chapter h1 {
+  font-size: 34px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.chapter h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 32px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #CDFF00;
+}
+.chapter h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #CDFF00;
+  margin: 24px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.chapter p {
+  margin-bottom: 14px;
+  color: #e0e0e0;
+}
+.chapter strong { color: #ffffff; font-weight: 800; }
+.chapter em { color: #aaaaaa; font-style: italic; }
+.chapter code {
+  background: #111;
+  color: #CDFF00;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+}
+.chapter blockquote {
+  border-left: 3px solid #CDFF00;
+  background: #111111;
+  padding: 14px 20px;
+  margin: 20px 0;
+  border-radius: 0 6px 6px 0;
+  color: #888888;
+  font-size: 14px;
+}
+.chapter blockquote p { color: #888888; margin: 0; }
+.chapter ul, .chapter ol {
+  margin: 12px 0 16px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.chapter ul li, .chapter ol li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+}
+.chapter ul li::before {
+  content: '■';
+  position: absolute;
+  left: 0;
+  color: #CDFF00;
+  font-size: 8px;
+  top: 4px;
+}
+.chapter ol { counter-reset: item; }
+.chapter ol li { counter-increment: item; }
+.chapter ol li::before {
+  content: counter(item) '.';
+  position: absolute;
+  left: 0;
+  color: #CDFF00;
+  font-weight: 800;
+  font-size: 13px;
+}
+.chapter hr {
+  border: none;
+  border-top: 1px solid #1a1a1a;
+  margin: 28px 0;
+}
+.chapter table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+}
+.chapter table th {
+  background: #111111;
+  color: #CDFF00;
+  font-weight: 800;
+  padding: 10px 14px;
+  text-align: left;
+  border: 1px solid #CDFF00;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.chapter table td {
+  padding: 9px 14px;
+  border: 1px solid #222;
+  color: #e0e0e0;
+}
+.chapter table tr:nth-child(even) td { background: #0d0d0d; }
+.chapter table tr:nth-child(odd) td { background: #0a0a0a; }
+
+/* ── FOOTER (via CSS @page + pseudo) ── */
+@page {
+  size: A4;
+  margin: 20mm;
+  @bottom-left {
+    content: 'ctgfit.es';
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: #444;
+  }
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: #444;
+  }
+}
+</style>
+</head>
+<body>
+  
+<div class="cover">
+  <div class="cover-ctg">CTG</div>
+  <div class="cover-line"></div>
+  <div class="cover-title">Guía de Definición</div>
+  <div class="cover-sub">El sistema completo en 8 capítulos</div>
+  <div class="cover-footer">
+    <div class="cover-url">ctgfit.es</div>
+    <div class="cover-year">2026</div>
+  </div>
+</div>
+
+  
+<div class="toc">
+  <div class="toc-title">Contenido</div>
+  
+    <div class="toc-item">
+      <span class="toc-num">01</span>
+      <span class="toc-name">Calcula tus números</span>
+    </div>
+  
+    <div class="toc-item">
+      <span class="toc-num">02</span>
+      <span class="toc-name">Diseña tu déficit sin pasar hambre</span>
+    </div>
+  
+    <div class="toc-item">
+      <span class="toc-num">03</span>
+      <span class="toc-name">El entrenamiento que protege el músculo</span>
+    </div>
+  
+    <div class="toc-item">
+      <span class="toc-num">04</span>
+      <span class="toc-name">Cardio y pasos — cuánto de verdad necesitas</span>
+    </div>
+  
+    <div class="toc-item">
+      <span class="toc-num">05</span>
+      <span class="toc-name">Ajustes semana a semana</span>
+    </div>
+  
+    <div class="toc-item">
+      <span class="toc-num">06</span>
+      <span class="toc-name">Suplementos — lo que dice la evidencia</span>
+    </div>
+  
+    <div class="toc-item">
+      <span class="toc-num">07</span>
+      <span class="toc-name">Los errores que arruinan definiciones</span>
+    </div>
+  
+    <div class="toc-item">
+      <span class="toc-num">08</span>
+      <span class="toc-name">Plantillas para empezar desde hoy</span>
+    </div>
+  
+</div>
+
+  
+<div class="chapter">
+  <div class="ch-label">Capítulo 01</div>
+  <h1>Calcula tus números</h1>
+  <blockquote>
+<p>Información educativa. No sustituye el consejo de un dietista-nutricionista o médico. Si tienes alguna condición de salud, consulta antes con un profesional.</p>
+</blockquote>
+<h2>Antes de nada: el orden de las cosas</h2>
+<p>Que quede claro desde la primera página: <strong>el entrenamiento es lo más importante</strong>. Es el estímulo que le dice a tu cuerpo &quot;construye músculo&quot; o &quot;conserva el que hay&quot;. Sin un buen entrenamiento, la mejor dieta del mundo no te lleva a ningún sitio.</p>
+<p>Pero aquí está lo que el 90% no entiende: la nutrición, el descanso y los hábitos deciden <strong>cuánto de ese entrenamiento se convierte en resultados</strong>. Entrenar bien comiendo a ciegas y durmiendo 5 horas es dejar la mitad del progreso en la mesa. Esta guía existe para que no dejes nada.</p>
+<h2>Por qué empezamos por los números</h2>
+<p>El 90% de la gente que entrena no sabe cuántas calorías come. Y sin ese número, todo lo demás es adivinar. Este capítulo te da el método exacto para calcular tus calorías y macros en 10 minutos. Es el mismo que uso yo. Los rangos que verás (proteína 1,8-2,2 g/kg, superávits y déficits moderados) son los que la evidencia científica actual respalda de forma consistente — nada de números mágicos de gurú.</p>
+<h2>Paso 1 — Tu gasto de mantenimiento (TDEE)</h2>
+<p>El TDEE es lo que tu cuerpo gasta al día contando entrenamiento y actividad. La fórmula rápida que funciona en la práctica:</p>
+<p><strong>Peso corporal (kg) × factor de actividad</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tu día a día</th>
+<th>Factor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sedentario (oficina/estudias, entrenas 2-3 días)</td>
+<td>× 31-33</td>
+</tr>
+<tr>
+<td>Activo (entrenas 4-5 días, andas bastante)</td>
+<td>× 33-35</td>
+</tr>
+<tr>
+<td>Muy activo (entrenas 5-6 días + trabajo físico o +10k pasos)</td>
+<td>× 35-38</td>
+</tr>
+</tbody></table>
+<p><strong>Mi ejemplo real:</strong> peso 85 kg, entreno 5-6 días y me muevo bastante → 85 × 35 = <strong>≈2.975 kcal de mantenimiento</strong>.</p>
+<p>⚠️ Es una estimación de partida, no una sentencia. En el capítulo 5 verás cómo ajustarla con tus datos reales de báscula — que es lo que de verdad manda.</p>
+<h2>Paso 2 — Ajusta según tu objetivo</h2>
+<p><strong>DEFINICIÓN (perder grasa):</strong> mantenimiento − 300 a 500 kcal.<br>Déficit moderado = pierdes grasa conservando músculo. Déficits agresivos (−800, −1000) son la razón #1 de definiciones fallidas: pierdes músculo, rindes peor y acabas con rebote.</p>
+<p><em>Ejemplo tipo: chico de 80 kg, mantenimiento 2.640 kcal → definición a 2.200-2.340 kcal.</em></p>
+<p><strong>VOLUMEN LIMPIO (ganar músculo con mínima grasa):</strong> mantenimiento + 200 a 350 kcal.<br>Más superávit no es más músculo: el músculo se construye lento, y el excedente extra se almacena como grasa. Paciencia &gt; atracón.</p>
+<p><em>Mi caso: mantenimiento ≈2.975 → volumen a 3.175-3.325 kcal.</em></p>
+<p><strong>MANTENIMIENTO / RECOMPOSICIÓN:</strong> en tu TDEE. Opción válida si eres principiante o vuelves de parón: puedes ganar músculo y perder grasa a la vez los primeros meses.</p>
+<h2>Paso 3 — Reparte tus macros</h2>
+<p>El orden importa: proteína primero, grasas después, y los carbohidratos rellenan el resto.</p>
+<p><strong>1. PROTEÍNA: 1,8-2,2 g por kg de peso</strong></p>
+<ul>
+<li>En definición ve a la parte alta (2-2,2): protege el músculo en déficit.</li>
+<li>En volumen, 1,8-2 sobra.</li>
+<li>Si tienes bastante grasa que perder, calcula sobre tu peso objetivo, no el actual.</li>
+</ul>
+<p><em>Mi caso: 85 kg × 2 = <strong>170 g de proteína</strong> (680 kcal)</em></p>
+<p><strong>2. GRASAS: 0,8-1 g por kg de peso</strong><br>No bajes de 0,6 g/kg de forma sostenida: las grasas regulan hormonas clave. La base: aceite de oliva virgen, frutos secos, pescado azul, huevos, aguacate.</p>
+<p><em>Mi caso: 85 × 0,9 ≈ <strong>75 g de grasa</strong> (675 kcal)</em></p>
+<p><strong>3. CARBOHIDRATOS: el resto de calorías</strong><br>Fórmula: (Calorías objetivo − kcal de proteína − kcal de grasa) ÷ 4</p>
+<p><em>Mi caso en volumen: (3.250 − 680 − 675) ÷ 4 ≈ <strong>475 g de carbohidratos</strong></em></p>
+<p>Los carbos son tu gasolina de entrenamiento. Quien los demoniza no ha entendido nada: la diferencia entre definir y engordar la marcan las calorías totales, no los carbohidratos.</p>
+<h2>Paso 4 — Tus números en una tarjeta</h2>
+<p>Rellena esto y pégalo donde lo veas:</p>
+<ul>
+<li>Mantenimiento: ____ kcal</li>
+<li>Objetivo (definición/volumen): ____ kcal</li>
+<li>Proteína: ____ g · Grasas: ____ g · Carbohidratos: ____ g</li>
+</ul>
+<p>O hazlo en 30 segundos con mi calculadora gratuita: <strong>ctgfit-app.vercel.app/calculadora</strong></p>
+<h2>Errores de este paso (los veo a diario)</h2>
+<ol>
+<li><strong>Calcular proteína sobre peso total teniendo mucha grasa</strong> → usa peso objetivo.</li>
+<li><strong>Copiar las calorías de otro</strong> → tu TDEE es tuyo; el de tu ídolo de TikTok no te sirve.</li>
+<li><strong>Tratar el número como ley eterna</strong> → es tu punto de partida; la báscula semanal decide los ajustes (capítulo 5).</li>
+<li><strong>Obsesionarte con clavar el gramo</strong> → ±5-10% de margen diario es irrelevante. La media semanal es lo que cuenta.</li>
+<li><strong>Cambiar los números cada 3 días</strong> → dale mínimo 2-3 semanas a cualquier configuración antes de tocar nada.</li>
+</ol>
+<h2>Resumen del capítulo</h2>
+<ol>
+<li>TDEE = peso × factor de actividad</li>
+<li>Definición: −300/500 · Volumen: +200/350</li>
+<li>Proteína 1,8-2,2 g/kg → Grasas 0,8-1 g/kg → Carbos el resto</li>
+<li>Son números de partida: los datos reales de las próximas semanas los afinan</li>
+</ol>
+<p><em>Siguiente capítulo: cómo diseñar tu déficit (o superávit) sin pasar hambre ni vivir pesando comida.</em></p>
+
+</div>
+
+<div class="chapter">
+  <div class="ch-label">Capítulo 02</div>
+  <h1>Diseña tu déficit sin pasar hambre</h1>
+  <blockquote>
+<p>Información educativa. No sustituye el consejo de un dietista-nutricionista o médico.</p>
+</blockquote>
+<h2>El problema real de las dietas de definición</h2>
+<p>No es el hambre. Es el hambre constante que no para — el que aparece dos horas después de comer, el que te despierta por la noche, el que hace que abandones el plan en la semana 3. Ese tipo de hambre no es inevitable. Es el resultado de estructurar el déficit de forma incorrecta.</p>
+<p>Este capítulo te enseña a comer menos calorías sin sentirte en permanente restricción. Es la diferencia entre una definición que aguantas 12 semanas y una que tiras a las 3.</p>
+<hr>
+<h2>Por qué el hambre no es solo &quot;fuerza de voluntad&quot;</h2>
+<p>El hambre tiene base hormonal. Las dos hormonas que mandan son la <strong>grelina</strong> (te dice que comas) y la <strong>leptina</strong> (te dice que pares). En déficit calórico, la grelina sube y la leptina baja — es una respuesta biológica, no un fallo de carácter.</p>
+<p>Lo que sí puedes controlar: la intensidad de esa señal. Hay alimentos, horarios y estrategias que amplifican o amortiguan el hambre sin cambiar las calorías totales.</p>
+<hr>
+<h2>El principio de la saciedad: más volumen, menos calorías</h2>
+<p>El estómago responde al volumen físico de comida — no a las calorías. 500 kcal de arroz blanco solo te llenan un rato. 500 kcal de pollo + verdura + arroz te mantienen lleno el doble de tiempo, con más volumen en el plato.</p>
+<p><strong>El truco más simple de toda la guía:</strong> llena la mitad del plato de verdura. Casi cero calorías (30-80 kcal por 100g de la mayoría), enorme volumen físico, mucha fibra. El resultado: comes el mismo total de calorías pero el plato parece más grande, el estómago se llena más y la sensación de restricción desaparece.</p>
+<p>Los alimentos con mejor ratio volumen/calorías para definición:</p>
+<ul>
+<li>Verduras en general (espinacas, lechuga, pepino, pimiento, brócoli, tomate)</li>
+<li>Caldo de huesos o consomé (10-40 kcal/taza)</li>
+<li>Sandía y fresas (bajo índice calórico, alta agua)</li>
+<li>Claras de huevo (17 kcal/unidad, proteína pura)</li>
+<li>Yogur griego 0% (90-100 kcal, 10g de proteína)</li>
+</ul>
+<hr>
+<h2>La proteína como herramienta contra el hambre</h2>
+<p>La proteína es el macronutriente más saciante. Tiene el TEF (gasto en digestión) más alto de los tres macros — tu cuerpo gasta hasta un 20-30% de las calorías de la proteína simplemente digiriéndola. Y reduce la grelina más que los carbohidratos o las grasas.</p>
+<p><strong>La regla práctica:</strong> pon proteína en TODAS las comidas, no solo en el post-entreno. Un desayuno con 30g de proteína (huevos, yogur griego, fiambre de pavo, claras) reduce el apetito a lo largo de todo el día más que cualquier otra estrategia de timing.</p>
+<p>Las fuentes de proteína que mejor me funcionan para manejar el hambre:</p>
+<ul>
+<li>Pechuga de pollo y pavo: alta proteína, muy poca grasa</li>
+<li>Huevos enteros + claras combinadas</li>
+<li>Yogur griego 0%</li>
+<li>Atún en agua</li>
+<li>Requesón / queso cottage</li>
+<li>Proteína en polvo cuando no llego con comida real</li>
+</ul>
+<hr>
+<h2>Estructura de comidas: cuántas y cuándo</h2>
+<p>No hay una frecuencia perfecta — hay la que a ti te hace pasar menos hambre.</p>
+<p>Dicho esto, lo que la evidencia y la experiencia práctica muestran:</p>
+<p><strong>Más comidas, más pequeñas:</strong> funciona bien para gente que pica si tiene mucho tiempo entre comidas. El problema: si las comidas son demasiado pequeñas, no hay saciedad real en ninguna de ellas.</p>
+<p><strong>Menos comidas, más grandes:</strong> funciona para quien puede aguantar entre comidas pero le cuesta sentirse lleno con porciones pequeñas.</p>
+<p><strong>Mi sistema en definición:</strong> 4-5 comidas al día, espaciadas 2,5-3,5 horas. No como las 2-3h antes de dormir. La razón no es solo digestiva — es que si ceno tarde, desayuno tarde, y todo el horario se retrasa y las horas sin comer se concentran mal.</p>
+<p>Lo que sí evito: estar más de 4-5 horas sin comer en definición. Ese es el punto donde el hambre se dispara y la primera cosa que pillo no suele ser la más estratégica.</p>
+<hr>
+<h2>Cómo NO vivir pesando comida (pero sí al principio)</h2>
+<p>Pesar la comida es necesario al inicio — no para siempre. El objetivo es calibrar tu percepción. Después de 4-6 semanas pesando, sabrás a ojo cuánto son 150g de pechuga o 60g de avena. Y esa referencia te dura años.</p>
+<p>Si nunca has pesado comida, la revelación más común es:</p>
+<ul>
+<li>Una &quot;cucharada de aceite&quot; suele ser el doble de lo que crees: ~15ml = 120 kcal</li>
+<li>Un &quot;puñado de frutos secos&quot; son 30-40g → 180-220 kcal</li>
+<li>&quot;Un poco de arroz&quot; en el plato suelen ser 90-100g en seco → 330-360 kcal cocido</li>
+</ul>
+<p>Estos tres errores juntos pueden sumar 400-500 kcal extra al día sin que te des cuenta. Pesa 4 semanas, calibra, y después usa el ojo con mucha más precisión.</p>
+<p><strong>La herramienta gratuita:</strong> cualquier app de conteo de calorías (MyFitnessPal, Cronometer, Yazio). El objetivo no es contar calorías de por vida — es aprender a estimar correctamente durante unas semanas.</p>
+<hr>
+<h2>Alimentos que no pueden faltar en tu lista de la compra (definición)</h2>
+<p>Construye tus comidas alrededor de esto:</p>
+<p><strong>Proteínas:</strong> pechuga de pollo, pechuga de pavo, lomo de cerdo, huevos, claras, atún, salmón, gambas, yogur griego 0%, requesón, proteína en polvo (whey o caseína)</p>
+<p><strong>Carbohidratos que sacian:</strong> avena, arroz integral, boniato, legumbres (lentejas, garbanzos — además aportan proteína y fibra), fruta entera (no zumo)</p>
+<p><strong>Grasas de calidad:</strong> aceite de oliva virgen extra (medido — no a ojo), aguacate, frutos secos en cantidad controlada, huevo entero, salmón</p>
+<p><strong>Verduras de volumen libre:</strong> espinacas, lechuga, rúcula, pepino, tomate, pimiento, calabacín, champiñones, brócoli — come la cantidad que quieras, el impacto calórico es mínimo</p>
+<hr>
+<h2>Gestión del hambre en momentos difíciles</h2>
+<p><strong>Por la tarde (la hora más traicionera en definición):</strong><br>El cortisol baja por la tarde y el cuerpo busca energía rápida. Mi protocolo: una comida a las 16-17h con proteína + fruta, y si hay hambre real antes de cenar, un vaso de agua grande o un caldo.</p>
+<p><strong>Antes de dormir:</strong><br>Si tienes hambre antes de dormir, prioriza alimentos de digestión lenta: caseína (yogur griego o proteína de caseína), un poco de requesón o queso cottage. No pan, no carbohidratos simples que disparan insulina y luego bajan rápido.</p>
+<p><strong>&quot;Hambre emocional&quot; vs hambre real:</strong><br>El hambre real aparece gradualmente y se puede aplazar. El hambre emocional es repentina, se centra en alimentos específicos (&quot;quiero eso en concreto&quot;) y no desaparece bebiendo agua. Aprende a distinguirlos — es una habilidad que se entrena.</p>
+<hr>
+<h2>El superpoder que nadie menciona: la fibra</h2>
+<p>La fibra ralentiza el vaciado gástrico, estabiliza el azúcar en sangre y alimenta la microbiota intestinal. Objetivo mínimo: 25-35g de fibra al día. Con verduras, legumbres, avena y fruta entera lo alcanzas sin esfuerzo.</p>
+<p>Un dato práctico: añadir psyllium (cáscara de psyllium, ~5g en un vaso de agua antes de comer) puede reducir el hambre en comidas posteriores. Es literalmente fibra soluble que forma un gel en el estómago. Sin calorías relevantes, sin sabor, y muy barato.</p>
+<hr>
+<h2>Resumen del capítulo</h2>
+<ol>
+<li>El hambre es hormonal, no moral — puedes gestionarla con estrategia</li>
+<li>Llena la mitad del plato de verdura: mismo déficit, más volumen</li>
+<li>Proteína en todas las comidas — es el macro más saciante</li>
+<li>4-5 comidas al día, espaciadas 2,5-4h (ajusta a lo que te funcione)</li>
+<li>Pesa comida 4-6 semanas al inicio para calibrar — luego estimas con precisión</li>
+<li>Fibra 25-35g/día: verduras, avena, legumbres, fruta entera</li>
+</ol>
+<p><em>Siguiente capítulo: el entrenamiento que protege el músculo — cómo entrenar en definición sin perder lo que has construido.</em></p>
+
+</div>
+
+<div class="chapter">
+  <div class="ch-label">Capítulo 03</div>
+  <h1>El entrenamiento que protege el músculo</h1>
+  <blockquote>
+<p>Información educativa. No sustituye el consejo de un profesional del deporte o médico.</p>
+</blockquote>
+<h2>El error que destruye definiciones perfectas</h2>
+<p>Puedes calcular los macros a la perfección, gestionar el hambre como un profesional y ajustar semana a semana con datos reales. Y aun así llegar al final de tu definición con menos músculo del que tenías. ¿Por qué?</p>
+<p>Por el entrenamiento. Concretamente, por cambiar el entrenamiento cuando entras en déficit de formas que destruyen el músculo en vez de protegerlo.</p>
+<p>Este capítulo te dice qué mantener, qué cambiar y por qué. Con mi protocolo exacto.</p>
+<hr>
+<h2>Lo que el músculo realmente necesita para no desaparecer</h2>
+<p>El músculo es caro de mantener para el cuerpo — gasta energía en reposo. En déficit calórico, el cuerpo tiene menos energía disponible y busca dónde ahorrar. Si el entrenamiento no le da la señal de &quot;este músculo se usa y es necesario&quot;, lo sacrifica como fuente de energía.</p>
+<p>La señal que retiene el músculo: <strong>tensión mecánica alta</strong>. Cargas suficientes, esfuerzo real, progresión o mantenimiento de pesos.</p>
+<p>Lo que NO envía esa señal: pesos bajos a muchas repeticiones, ejercicios de aislamiento exclusivamente, cardio en exceso o entrenamiento de muy bajo esfuerzo.</p>
+<p>La regla más importante de este capítulo: <strong>en definición, entrenas igual de pesado que en volumen</strong>. Lo que cambia es el objetivo — no buscas superar marcas cada semana (porque no tienes el superávit para ello), sino mantenerlas.</p>
+<hr>
+<h2>Frecuencia: cuántos días por semana</h2>
+<p>El consenso de la evidencia científica actual sobre hipertrofia y retención muscular:</p>
+<ul>
+<li><strong>Mínimo efectivo:</strong> 2 días por semana por grupo muscular</li>
+<li><strong>Óptimo para la mayoría:</strong> 3-4 días/semana por grupo muscular</li>
+<li><strong>Más no es mejor</strong> a partir de cierto punto — la recuperación manda</li>
+</ul>
+<p><strong>Mi split en definición (el que uso):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Día</th>
+<th>Trabajo</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lunes</td>
+<td>Empuje (pecho, hombros, tríceps)</td>
+</tr>
+<tr>
+<td>Martes</td>
+<td>Tirón (espalda, bíceps)</td>
+</tr>
+<tr>
+<td>Miércoles</td>
+<td>Pierna</td>
+</tr>
+<tr>
+<td>Jueves</td>
+<td>Descanso activo (8-10k pasos, movilidad)</td>
+</tr>
+<tr>
+<td>Viernes</td>
+<td>Empuje</td>
+</tr>
+<tr>
+<td>Sábado</td>
+<td>Tirón + pierna (volumen reducido)</td>
+</tr>
+<tr>
+<td>Domingo</td>
+<td>Descanso completo</td>
+</tr>
+</tbody></table>
+<p>Esto da frecuencia 2 por grupo muscular con 6 días de entrenamiento. En definición mantengo este mismo split — a veces reduzco una sesión si la fatiga acumulada es alta, pero nunca bajo de 4 sesiones semanales.</p>
+<hr>
+<h2>Los ejercicios que más importan (y por qué son compuestos)</h2>
+<p>Los ejercicios compuestos — los que mueven múltiples articulaciones y grupos musculares a la vez — son los más eficientes para la retención muscular por varias razones:</p>
+<ul>
+<li>Activan más unidades motoras (más músculo estimulado en menos tiempo)</li>
+<li>Producen mayor respuesta hormonal (testosterona, hormona de crecimiento)</li>
+<li>Son los ejercicios en los que puedes mover más carga total</li>
+<li>Permiten progresión de carga durante más tiempo</li>
+</ul>
+<p><strong>Los que no salen de mi entrenamiento en ninguna fase:</strong></p>
+<ul>
+<li>Sentadilla / sentadilla goblet (pierna, cuádriceps)</li>
+<li>Peso muerto / rumano (cadena posterior, isquios, glúteo)</li>
+<li>Press de banca o con mancuernas (pecho)</li>
+<li>Press militar o Arnold (hombros)</li>
+<li>Dominadas / jalón al pecho (espalda, dorsales)</li>
+<li>Remo con barra o mancuernas (espalda media, trapecios)</li>
+</ul>
+<p>Los ejercicios de aislamiento (curl de bíceps, extensiones de tríceps, elevaciones laterales) los mantengo como complemento — nunca como el núcleo del entrenamiento.</p>
+<hr>
+<h2>Volumen, intensidad y repeticiones en definición</h2>
+<p><strong>Volumen:</strong> el número total de series por semana por grupo muscular.</p>
+<ul>
+<li>Rango de mantenimiento muscular: 8-12 series/semana por grupo</li>
+<li>Rango óptimo para hipertrofia: 12-20 series/semana</li>
+</ul>
+<p>En definición, si antes hacías 16 series semanales de pecho, puedes bajar a 12-14 y mantener el músculo sin problemas — siempre que la intensidad se mantenga.</p>
+<p><strong>Intensidad:</strong> el esfuerzo relativo de cada serie, medido en RIR (repeticiones en reserva — cuántas repeticiones te quedaban antes del fallo).</p>
+<ul>
+<li>Para retención muscular: 0-3 RIR en la mayoría de series (cerca del fallo)</li>
+<li>El error en definición: bajar el peso y hacer 20 repeticiones &quot;fáciles&quot; — eso no estimula la retención</li>
+</ul>
+<p><strong>Repeticiones por serie:</strong> 5-15 es el rango que activa la hipertrofia. No hay un número mágico — dentro de ese rango, lo importante es el esfuerzo real, no el número exacto.</p>
+<p><strong>Mi esquema habitual por ejercicio principal:</strong></p>
+<ul>
+<li>3-4 series × 6-10 repeticiones (compuesto principal)</li>
+<li>3 series × 10-15 repeticiones (compuesto secundario o aislamiento)</li>
+<li>2-3 series × 12-20 repeticiones (ejercicio de congestión, final de sesión)</li>
+</ul>
+<hr>
+<h2>Progresión de carga: cómo medir que lo estás haciendo bien</h2>
+<p>La progresión de carga es la base del entrenamiento de fuerza — la idea de que, con el tiempo, mueves más peso o haces más repeticiones con el mismo peso.</p>
+<p>En definición no esperes superar marcas cada semana. El objetivo es otro: <strong>no perder marcas durante las semanas de déficit</strong>. Si al final de 12 semanas de definición haces los mismos pesos en los mismos ejercicios, has preservado el músculo.</p>
+<p>Señal de alarma: perder 10-15% de carga en ejercicios principales de forma sostenida durante 2-3 semanas. Puede indicar que el déficit es demasiado agresivo, que no duermes suficiente o que el volumen de entrenamiento supera lo que puedes recuperar en déficit.</p>
+<hr>
+<h2>El orden de los ejercicios importa</h2>
+<p><strong>Regla fija:</strong> compuestos pesados primero, aislamientos al final.</p>
+<p>Cuando llegas a la primera serie, tu sistema nervioso y tus músculos están frescos — eso es cuando puedes mover más carga. Gastar esa energía en curl de bíceps antes del remo es literalmente tirar potencial.</p>
+<p><strong>Dentro de una sesión:</strong></p>
+<ol>
+<li>Calentamiento general (5-8 min cardio suave o movilidad)</li>
+<li>Calentamiento específico del ejercicio principal (series ligeras progresivas)</li>
+<li>Ejercicio compuesto principal (máxima carga del día)</li>
+<li>Ejercicio compuesto secundario</li>
+<li>Aislamientos y complementos</li>
+<li>Cardio suave si toca (no antes)</li>
+</ol>
+<hr>
+<h2>Descanso entre series: cuánto tiempo</h2>
+<p>El descanso entre series es una variable que mucha gente no controla y que tiene impacto directo en la calidad del entrenamiento:</p>
+<ul>
+<li><strong>Compuestos pesados (sentadilla, peso muerto, press):</strong> 2,5-4 minutos. Necesitas estar recuperado para dar el máximo en la siguiente serie</li>
+<li><strong>Compuestos secundarios:</strong> 2-3 minutos</li>
+<li><strong>Aislamientos:</strong> 60-90 segundos</li>
+</ul>
+<p>El error más común: descansos de 30-45 segundos en ejercicios pesados &quot;para quemar más&quot;. Resultado: peor rendimiento en cada serie, menor carga total, peor estímulo muscular.</p>
+<p>En definición, el cardio viene después del entrenamiento, no entre series.</p>
+<hr>
+<h2>Recuperación: el ingrediente que más se ignora</h2>
+<p>El músculo no crece (ni se mantiene) durante el entrenamiento — crece en la recuperación. En déficit calórico, la recuperación es más lenta porque hay menos energía disponible.</p>
+<p>Lo que acelera la recuperación en definición:</p>
+<ul>
+<li><strong>Sueño:</strong> 7-9 horas, sin negociar. La hormona de crecimiento se secreta en mayor medida durante el sueño profundo. En definición con poco sueño, el catabolismo se dispara.</li>
+<li><strong>Proteína bien distribuida:</strong> no solo post-entreno — en todas las comidas del día</li>
+<li><strong>Pasos, no cardio intenso:</strong> el NEAT (caminar, moverse) mejora el flujo sanguíneo sin añadir estrés significativo al sistema</li>
+<li><strong>Semana de descarga:</strong> cada 4-8 semanas, reducir el volumen de entrenamiento al 50-60% manteniendo la intensidad. El cuerpo se recupera, el rendimiento sube la semana siguiente</li>
+</ul>
+<hr>
+<h2>Lo que NO hago en definición (aunque lo veo constantemente)</h2>
+<p><strong>Cambiar las pesas por bandas o máquinas de bajas cargas:</strong> las máquinas son herramientas válidas, pero solo en vez de pesos libres para retención muscular si la carga es suficiente.</p>
+<p><strong>Hacer superseries para &quot;quemar más&quot;:</strong> las superseries (ejercicios sin descanso) aumentan la fatiga periférica y reducen la carga que puedes usar. No son mejores para el músculo — son más duras psicológicamente, que no es lo mismo.</p>
+<p><strong>Entrenar 7 días sin descanso:</strong> el entrenamiento en déficit con sueño comprometido y sin días de descanso es una receta para el sobreentrenamiento — que en definición significa pérdida de músculo, no más resultados.</p>
+<p><strong>Priorizar el cardio antes de las pesas:</strong> si entrenas pesas y cardio el mismo día, las pesas siempre primero. Siempre.</p>
+<hr>
+<h2>Mi protocolo de calentamiento (5 minutos, no más)</h2>
+<p>No necesitas 20 minutos de calentamiento para levantar pesas. Lo que sí necesitas: preparar el sistema nervioso y las articulaciones para el movimiento del día.</p>
+<p><strong>Calentamiento general (2-3 min):</strong> bicicleta estática, cuerda o simplemente moverte. Sube la temperatura corporal ligeramente.</p>
+<p><strong>Calentamiento específico del ejercicio principal (2-3 min):</strong></p>
+<ul>
+<li>Serie ligera al 40-50% del peso de trabajo (15 repeticiones)</li>
+<li>Serie media al 60-70% (8 repeticiones)</li>
+<li>Serie al 80-85% (3-4 repeticiones)</li>
+<li>Empieza el trabajo real</li>
+</ul>
+<p>Esto activa los patrones neuromusculares del movimiento y reduce el riesgo de lesión sin generar fatiga previa.</p>
+<hr>
+<h2>Resumen del capítulo</h2>
+<ol>
+<li>En definición, mantienes la carga de trabajo — no la reduces</li>
+<li>Compuestos pesados como núcleo: sentadilla, peso muerto, press, remo, dominadas</li>
+<li>Frecuencia mínima de 2 días/semana por grupo muscular</li>
+<li>Volumen reducible al 12-14 series/semana en definición — con intensidad real</li>
+<li>Descansos de 2-4 min en ejercicios pesados, no 45 segundos</li>
+<li>Recuperación (sueño + nutrición) decide cuánto músculo mantienes</li>
+<li>Cardio siempre después de las pesas, nunca antes</li>
+</ol>
+<p><em>Siguiente capítulo: cardio y pasos — cuánto de verdad necesitas y cuándo añadirlo sin destruir el músculo.</em></p>
+
+</div>
+
+<div class="chapter">
+  <div class="ch-label">Capítulo 04</div>
+  <h1>Cardio y pasos — cuánto de verdad necesitas</h1>
+  <blockquote>
+<p>Información educativa. No sustituye el consejo de un profesional del deporte o médico.</p>
+</blockquote>
+<h2>El mito que más gente sigue sin cuestionar</h2>
+<p>&quot;Para definir hay que hacer cardio.&quot; Parcialmente cierto. &quot;Cuanto más cardio, mejor.&quot; Completamente falso — y la razón por la que muchas definiciones terminan con menos músculo del que empezaron.</p>
+<p>El cardio es una herramienta. Como cualquier herramienta, hay que saber cuándo usarla, cuánto y de qué tipo.</p>
+<h2>La jerarquía del gasto calórico que nadie explica</h2>
+<p>Tu gasto diario total (TDEE del capítulo 1) se divide en cuatro partes:</p>
+<ol>
+<li><strong>BMR</strong> (~60-70%): lo que gastas existiendo — respirar, corazón, órganos</li>
+<li><strong>NEAT</strong> (~15-30%): actividad no planificada — caminar, moverte, gesticular, estar de pie</li>
+<li><strong>TEF</strong> (~10%): energía que gasta el propio proceso de digerir comida</li>
+<li><strong>EAT</strong> (~5-10%): ejercicio planificado (gym, cardio)</li>
+</ol>
+<p>El número que sorprende a todo el mundo: el cardio planificado representa solo el 5-10% del gasto total. Los pasos y el movimiento diario (NEAT) pueden representar el triple. Esto cambia completamente cómo deberías enfocar tu definición.</p>
+<h2>NEAT: el arma secreta que nadie usa</h2>
+<p>NEAT es todo lo que no es ejercicio planificado: caminar al gym, subir escaleras, moverte en casa, estar de pie en vez de sentado. Una persona activa puede gastar 500-800 kcal más al día en NEAT que una persona sedentaria — sin poner un pie en el cardio.</p>
+<p>Lo que hago yo en definición: <strong>8-10.000 pasos diarios</strong>. No como &quot;cardio&quot; — como NEAT activo. Caminar a ritmo normal no interfiere con la recuperación, no eleva el cortisol de forma significativa y acumula un gasto calórico real a lo largo del día.</p>
+<p>Si tienes que elegir entre 30 minutos de cardio intenso o 8.000 pasos diarios, elige los pasos — son más sostenibles, menos estresantes para el sistema y más fáciles de mantener semanas.</p>
+<h2>Cardio sí, pero así</h2>
+<p>Cuando el déficit calórico no llega solo con la dieta y los pasos, añado cardio. Mis preferencias en orden:</p>
+<p><strong>1. Caminar a ritmo moderado (3-4 km/h):</strong> 20-30 minutos, 2-3 veces/semana. Impacto mínimo en la recuperación, cero interferencia con las pesas, sostenible indefinidamente.</p>
+<p><strong>2. Bicicleta estática o elíptica a baja intensidad:</strong> mismo criterio que caminar. Zona 2 cardio (puedes mantener una conversación mientras lo haces). Duración: 20-30 minutos.</p>
+<p><strong>3. HIIT o cardio de alta intensidad:</strong> lo uso con moderación en definición — máximo 1-2 sesiones por semana y siempre en días separados de las pesas más exigentes. Ventaja: gasta más calorías en menos tiempo. Desventaja: eleva el cortisol, fatiga el sistema nervioso central y puede interferir con la recuperación muscular.</p>
+<h2>Por qué evito el cardio en ayunas (a pesar del hype)</h2>
+<p>El cardio en ayunas no quema más grasa que el cardio fed cuando el total calórico del día es el mismo. Los estudios que comparan ambos a largo plazo no muestran diferencias significativas en la composición corporal. Lo que sí puede pasar haciendo cardio en ayunas con déficit calórico y peso bajo: catabolismo muscular real — exactamente lo que queremos evitar.</p>
+<p>Si lo haces porque te sienta bien o te encaja en la rutina, adelante. Pero no porque &quot;funcione mejor&quot; para quemar grasa.</p>
+<h2>El error más común con el cardio en definición</h2>
+<p>Aumentar el cardio cuando el peso no baja, sin tocar la dieta. El problema: el cuerpo compensa. Más cardio → más hambre → más comida inconsciente → el déficit se reduce o desaparece. La dieta siempre tiene más margen y más control que el cardio.</p>
+<p>Si llevas dos semanas sin bajar peso, revisa primero la dieta (¿estás midiendo realmente?) antes de añadir cardio.</p>
+<h2>Mi protocolo en definición</h2>
+<ul>
+<li>Pasos diarios: 8-10k (todos los días, incluidos días de descanso)</li>
+<li>Bicicleta/elíptica: 2 sesiones de 20-25 min/semana a zona 2</li>
+<li>HIIT: 0-1 sesión/semana si necesito acelerar el déficit</li>
+<li>Cardio en ayunas: no por defecto</li>
+</ul>
+<p>En total: menos de 1 hora de cardio planificado por semana. El resto del déficit lo hace la dieta.</p>
+<h2>Resumen del capítulo</h2>
+<ol>
+<li>El cardio es solo el 5-10% de tu gasto diario — la dieta y los pasos hacen el trabajo pesado</li>
+<li>8-10k pasos diarios es la herramienta más eficiente y menos destructiva para la definición</li>
+<li>Cardio suave (zona 2) 2-3x/semana como máximo en una definición normal</li>
+<li>HIIT con moderación — máximo 1-2x/semana, días separados de pesas intensas</li>
+<li>Si el peso no baja: revisa la dieta antes de añadir más cardio</li>
+</ol>
+<p><em>Siguiente capítulo: ajustes semana a semana — cómo leer los datos y saber exactamente qué tocar.</em></p>
+
+</div>
+
+<div class="chapter">
+  <div class="ch-label">Capítulo 05</div>
+  <h1>Ajustes semana a semana</h1>
+  <blockquote>
+<p>Información educativa. No sustituye el consejo de un profesional del deporte o médico.</p>
+</blockquote>
+<h2>Por qué los números del capítulo 1 son solo el punto de partida</h2>
+<p>Las fórmulas de TDEE son estimaciones. Pueden acertar mucho o desviarse un 20% dependiendo de tu metabolismo, historial dietético, nivel de actividad real y docenas de variables que ninguna ecuación captura. Por eso el sistema real no es calcular y seguir ciegamente — es calcular, observar y ajustar.</p>
+<p>Esta es la parte que separa a quien progresa de quien da vueltas en círculos durante meses.</p>
+<h2>La herramienta principal: la báscula bien usada</h2>
+<p>Mal usada, la báscula frustra y confunde. Bien usada, es el mejor dato gratuito que tienes.</p>
+<p><strong>Cómo pesarse correctamente:</strong></p>
+<ul>
+<li>Cada mañana, en ayunas, después de ir al baño, con la misma ropa (o sin ropa)</li>
+<li>Misma báscula, mismo suelo, mismo momento del día</li>
+<li>Anota el número — no lo interpretes todavía</li>
+</ul>
+<p><strong>Por qué no miras el número del día:</strong> el peso fluctúa 0.5-2 kg diarios por agua, glucógeno, sal, digestión, ciclo hormonal. El número de hoy no te dice nada útil.</p>
+<p><strong>Lo que sí te dice la media semanal:</strong></p>
+<p>Suma los 7 pesos de la semana y divide entre 7. Compara esa media con la de la semana anterior.</p>
+<ul>
+<li><strong>Definición:</strong> si la media baja 0.3-0.7 kg/semana → perfecto, no toques nada</li>
+<li><strong>Definición:</strong> si la media no baja en 2 semanas → reduce 100-150 kcal o añade 2k pasos</li>
+<li><strong>Definición:</strong> si la media baja más de 1 kg/semana de forma sostenida → déficit demasiado agresivo, sube 100-150 kcal</li>
+<li><strong>Volumen:</strong> si la media sube 0.2-0.5 kg/semana → perfecto</li>
+<li><strong>Volumen:</strong> si la media no sube en 2 semanas → sube 100-150 kcal</li>
+<li><strong>Volumen:</strong> si la media sube más de 0.7 kg/semana → acumulas grasa, baja 100-150 kcal</li>
+</ul>
+<h2>Señales que van más allá de la báscula</h2>
+<p>El peso no lo es todo. Hay otras señales que complementan:</p>
+<p><strong>Fuerza en el gym:</strong> el indicador más fiable de que mantienes músculo en definición. Si mantienes los pesos de trabajo, mantienes músculo — aunque la báscula no baje tanto como esperabas. Si pierdes fuerza de forma sostenida: el déficit es demasiado agresivo.</p>
+<p><strong>Energía y recuperación:</strong> en definición, una fatiga mayor de lo normal es esperable. Fatiga crónica que no mejora con sueño: el déficit puede ser demasiado profundo o el volumen de entrenamiento demasiado alto.</p>
+<p><strong>Fotos mensuales:</strong> la báscula no muestra lo que el espejo sí. Una foto de frente, de lado y de espaldas el mismo día de cada mes, misma luz, misma hora. A veces el peso se queda igual pero la composición mejora notablemente — y la foto lo demuestra.</p>
+<p><strong>Medidas:</strong> cintura, caderas, pecho. Opcional pero útil si quieres datos más concretos que el peso.</p>
+<h2>El protocolo de ajuste que sigo</h2>
+<p>Semana 1-2: no toco nada. Dejo que el cuerpo se adapte y recojo datos limpios.</p>
+<p>Semana 3 en adelante: reviso la media semanal cada domingo. Si el resultado no está en el rango esperado, hago UN solo cambio:</p>
+<ul>
+<li>O ajusto calorías (±100-150 kcal)</li>
+<li>O ajusto pasos (±2k)</li>
+<li>Nunca los dos a la vez — si cambias dos variables no sabes cuál funcionó</li>
+</ul>
+<p>Espero 2 semanas más antes del siguiente ajuste. Así el sistema funciona con señales claras, no con pánico.</p>
+<h2>Los errores más comunes al ajustar</h2>
+<p><strong>Cambiar cada semana:</strong> el cuerpo necesita tiempo para responder. Dos semanas sin cambio visible no es fracaso — es adaptación.</p>
+<p><strong>Bajar calorías sin control:</strong> si llegas a menos de 1.500-1.600 kcal (hombres) de forma sostenida, el riesgo de pérdida muscular y bajada de metabolismo es real. Mejor reducir el ritmo de pérdida que llegar a cifras muy bajas.</p>
+<p><strong>Pesarse a cualquier hora:</strong> el peso del mediodía después de comer puede ser 2 kg más que el de la mañana. Compara siempre en las mismas condiciones.</p>
+<p><strong>Obsesionarse con el número diario:</strong> si te pesas y ayer pesabas 0.3 kg más que hoy, no has perdido 300g de grasa — has ido al baño o has sudado más. La grasa real se pierde en semanas, no en días.</p>
+<h2>Recargas: cuándo y cómo</h2>
+<p>Una recarga es un día (o 2-3 días) donde subes los carbohidratos hasta el nivel de mantenimiento, manteniendo proteína y grasas igual. No es un &quot;día de trampa&quot; — es una herramienta con propósito.</p>
+<p>Para qué sirven en definición:</p>
+<ul>
+<li>Reponer glucógeno muscular (mejor rendimiento en entrenamientos)</li>
+<li>Dar un respiro psicológico al plan</li>
+<li>Pueden ayudar a &quot;romper&quot; estancamientos en definiciones largas</li>
+</ul>
+<p>Cuándo usarlas: cuando llevas 4-6 semanas en déficit continuo y la energía y fuerza empiezan a resentirse. No antes — si el déficit es reciente no tiene sentido.</p>
+<p>Cómo: un día con 100-150g más de carbohidratos (arroz, pasta, avena, fruta), sin cambiar proteína ni grasas. No es excusa para comer pizza — es una herramienta de precisión.</p>
+<h2>Resumen del capítulo</h2>
+<ol>
+<li>Pésate cada mañana pero trabaja con la media semanal</li>
+<li>Ajustes de ±100-150 kcal o ±2k pasos — nunca los dos a la vez</li>
+<li>Espera 2 semanas antes de cada ajuste</li>
+<li>La fuerza en el gym es el indicador de que mantienes músculo</li>
+<li>Las fotos mensuales muestran lo que la báscula no ve</li>
+<li>Recargas de carbohidratos tras 4-6 semanas de déficit sostenido</li>
+</ol>
+<p><em>Siguiente capítulo: suplementos — qué dice la evidencia de verdad y qué puedes ignorar.</em></p>
+
+</div>
+
+<div class="chapter">
+  <div class="ch-label">Capítulo 06</div>
+  <h1>Suplementos — lo que dice la evidencia</h1>
+  <blockquote>
+<p>Información educativa. Los suplementos pueden interactuar con medicamentos o condiciones de salud. Consulta con un profesional antes de tomarlos.</p>
+</blockquote>
+<h2>La realidad del mercado de suplementos</h2>
+<p>El sector de suplementos deportivos mueve miles de millones de euros al año. La mayoría de ese dinero va a productos con evidencia débil, nula o directamente inventada. Este capítulo no te vende nada — te dice lo que la ciencia respalda y lo que puedes ahorrarte.</p>
+<p>Regla general: ningún suplemento compensa una dieta mal estructurada, mal entrenamiento o poco sueño. Son la guinda del pastel, no el pastel.</p>
+<h2>Los que tienen evidencia sólida</h2>
+<p><strong>Creatina monohidrato</strong></p>
+<p>El suplemento más estudiado de la historia del deporte. La evidencia es consistente en docenas de estudios y metaanálisis: mejora el rendimiento en ejercicio de alta intensidad y fuerza, y puede aumentar ligeramente la masa muscular a largo plazo.</p>
+<p>Cómo funciona: aumenta los depósitos de fosfocreatina en el músculo, que se usa para regenerar ATP (energía inmediata) durante esfuerzos cortos e intensos.</p>
+<p>La evidencia trabaja en torno a 3-5 g/día de creatina monohidrato. La carga (20 g/día durante una semana) acelera la saturación pero no es necesaria — en 3-4 semanas a dosis normal los depósitos están llenos igualmente.</p>
+<p>Forma: monohidrato, el más estudiado y el más barato. No hay evidencia de que formas más caras (HCL, etil ester) sean superiores.</p>
+<p>Nota de seguridad: consulta con tu médico si tienes problemas renales. En personas sanas, décadas de investigación no muestran efectos adversos a dosis normales.</p>
+<p><strong>Proteína en polvo</strong></p>
+<p>No es un suplemento mágico — es proteína en formato conveniente. Si cubres tus requerimientos proteicos (1.8-2.2 g/kg) con comida real, no la necesitas. Si no llegas, la proteína en polvo es la forma más práctica y económica de completar el objetivo.</p>
+<p>Whey (suero): absorción rápida, perfil de aminoácidos completo, ideal post-entreno o para completar comidas. Caseína: absorción lenta, buena para antes de dormir. Vegetal (guisante, arroz): alternativa para quien no tolera el lácteo.</p>
+<p><strong>Cafeína</strong></p>
+<p>La cafeína mejora el rendimiento deportivo de forma consistente en la evidencia: aumenta la resistencia a la fatiga, mejora la fuerza en algunas personas y tiene efecto termogénico leve. La dosis efectiva está en torno a 3-6 mg/kg de peso corporal tomada 30-60 minutos antes del entrenamiento.</p>
+<p>Importante: el café cuenta. No necesitas cafeína en pastillas si ya tomas café antes de entrenar. Y la tolerancia se desarrolla — las personas que toman café a diario experimentan menos efecto agudo que quienes lo toman ocasionalmente.</p>
+<p><strong>Vitamina D3</strong></p>
+<p>En España, sobre todo en invierno y en personas que pasan poco tiempo al sol, los niveles bajos de vitamina D son comunes. La suplementación tiene evidencia sólida para mantener la salud ósea, la función inmune y posiblemente el rendimiento deportivo en personas con déficit.</p>
+<p>La vitamina D se toma mejor junto a grasas (es liposoluble) y en combinación con K2 para la absorción correcta de calcio. En dosis altas y durante tiempo prolongado puede acumularse — conviene control analítico antes de suplementar de forma continuada.</p>
+<p><strong>Omega-3 (EPA/DHA)</strong></p>
+<p>Los ácidos grasos omega-3 tienen evidencia en salud cardiovascular, reducción de inflamación y posiblemente recuperación muscular. La fuente mejor estudiada es el pescado azul — si lo comes 2-3 veces/semana (salmón, sardinas, caballa), no necesitas suplemento. Si no, el aceite de pescado de calidad es una alternativa razonable.</p>
+<p><strong>Magnesio (bisglicinato o malato)</strong></p>
+<p>El magnesio interviene en más de 300 reacciones enzimáticas del cuerpo, incluyendo la síntesis de proteínas y la función muscular. La deficiencia es más común de lo que parece en población que entrena. Se asocia a mejor calidad del sueño y reducción de calambres.</p>
+<p>La forma bisglicinato o malato tiene mejor absorción y tolera mejor el estómago que el óxido (el más barato y peor absorbido).</p>
+<h2>Lo que puedes ahorrarte</h2>
+<p><strong>Quemadores de grasa:</strong> ninguno tiene evidencia clínica significativa. Algunos contienen cafeína (que sí funciona) a dosis que podrías obtener con café. El resto de ingredientes (&quot;L-carnitina&quot;, &quot;té verde concentrado&quot;, &quot;extracto de pimienta de cayena&quot;) tienen evidencia débil o nula en el contexto de pérdida de grasa real.</p>
+<p><strong>BCAA:</strong> si consumes suficiente proteína total (lo que ya haces siguiendo el capítulo 1), los BCAAs son redundantes. Tu cuerpo obtiene leucina, isoleucina y valina de la proteína que comes.</p>
+<p><strong>Pre-entrenos complejos:</strong> la mayoría son cafeína + vasodilatadores + marketing. Si quieres un pre-entreno, toma un café antes de entrenar y ahórrate el precio.</p>
+<p><strong>Proteína vegetal &quot;especial&quot;:</strong> la proteína es proteína. Una proteína vegetal de guisante bien formulada es perfectamente válida. No necesitas las versiones premium con 15 ingredientes adicionales.</p>
+<h2>Resumen del capítulo</h2>
+<p>Suplementos con evidencia sólida para tu contexto: creatina monohidrato (3-5 g/día), proteína en polvo si no llegas con comida, cafeína pre-entreno si lo toleras, vitamina D3 + K2 en meses de baja exposición solar, omega-3 si no comes pescado azul, magnesio bisglicinato si el sueño o los calambres son un problema.</p>
+<p>El resto: gastar dinero en tranquilidad psicológica, no en resultados reales.</p>
+<p><em>Siguiente capítulo: los errores que arruinan definiciones — la colección completa para no repetirlos.</em></p>
+
+</div>
+
+<div class="chapter">
+  <div class="ch-label">Capítulo 07</div>
+  <h1>Los errores que arruinan definiciones</h1>
+  <blockquote>
+<p>Información educativa. No sustituye el consejo de un profesional del deporte o médico.</p>
+</blockquote>
+<h2>Por qué este capítulo existe</h2>
+<p>Porque la mayoría de definiciones fallidas no fallan por falta de esfuerzo — fallan por errores estratégicos que se repiten una y otra vez. He visto estos errores en mi propio proceso, los he corregido y los veo constantemente en los comentarios de mis posts. Este capítulo es la colección completa.</p>
+<hr>
+<h2>Error #1: Déficit demasiado agresivo</h2>
+<p>&quot;Quiero resultados rápidos&quot; → recortas 1000 kcal de golpe → en 2 semanas pierdes peso pero también músculo, rendimiento y energía → abandonas o te estancas.</p>
+<p>La pérdida óptima de grasa sin pérdida significativa de músculo ocurre entre 0.3-0.7 kg/semana (para la mayoría). Más rápido que eso y pagas con músculo, fuerza y metabolismo.</p>
+<hr>
+<h2>Error #2: Calcular proteína sobre el peso actual con exceso de grasa</h2>
+<p>Si pesas 90 kg pero tienes un 25% de grasa, tus músculos no pesan 90 kg — pesan aproximadamente 67 kg. Calcular 2 g/kg sobre 90 kg son 180 g de proteína. Calculado sobre el peso objetivo (75 kg, por ejemplo): 150 g. La diferencia no es enorme pero importa — y el error siempre va en la dirección de malentender tus requerimientos reales.</p>
+<hr>
+<h2>Error #3: Hacer demasiado cardio y muy poco control de dieta</h2>
+<p>El cardio da una falsa sensación de control. &quot;He hecho 45 minutos de cinta, puedo comer un poco más.&quot; El problema: 45 minutos de cinta intensa queman ~300-400 kcal. Un menú desordenado puede superar eso en un aperitivo. La dieta siempre manda más que el cardio.</p>
+<hr>
+<h2>Error #4: Cambiar el entrenamiento a repeticiones altas y pesos bajos</h2>
+<p>El músculo se mantiene con el mismo estímulo que se construyó: cargas suficientes y progresión. Las pesas de 2 kg a 30 repeticiones no envían la señal de &quot;mantén este músculo&quot; — envían la señal de &quot;esto es resistencia muscular a baja intensidad, no necesitamos masa extra&quot;.</p>
+<hr>
+<h2>Error #5: No medir lo que comes</h2>
+<p>&quot;Creo que como bien.&quot; La mayoría de personas subestima entre un 20-40% su ingesta calórica real. Los alimentos que más engañan: aceites (1 cucharada sopera son ~120 kcal), frutos secos (un puñado = 150-200 kcal), salsas y aderezos, pan y sus variantes. Pesar la comida durante al menos 2-4 semanas al inicio de cualquier plan te da una referencia real que luego puedes usar sin báscula de cocina.</p>
+<hr>
+<h2>Error #6: Cambiar el plan cada semana</h2>
+<p>Cambias las calorías, luego el entrenamiento, luego los horarios de comida, luego vuelves a cambiar las calorías. El cuerpo nunca se adapta a nada porque nunca le das tiempo suficiente. La regla: mínimo 2-3 semanas con el mismo plan antes de tocar nada. La paciencia no es pasividad — es el requisito para tener datos útiles.</p>
+<hr>
+<h2>Error #7: Pesarse una vez por semana (o nunca)</h2>
+<p>Sin datos no hay decisiones buenas. Pesarse una vez por semana no te da la media semanal real — te da el peso de un momento concreto, influenciado por lo que comiste el día anterior, si fuiste al baño, si dormiste bien. Pesarse cada día y usar la media semanal es la forma de tener señal real sin ruido.</p>
+<hr>
+<h2>Error #8: Priorizar el cardio antes de las pesas</h2>
+<p>Si entrenas pesas y cardio el mismo día, hazlo en este orden: pesas → cardio. El cardio previo agota el glucógeno muscular que necesitas para rendir en fuerza, y puede elevar el cortisol antes incluso de tocar un peso. Resultado: peor entrenamiento y más riesgo de catabolismo.</p>
+<hr>
+<h2>Error #9: Ignorar el sueño</h2>
+<p>Durante el sueño se secreta la mayor parte de la hormona de crecimiento, se repara el tejido muscular y se regulan la leptina (saciedad) y la grelina (hambre). Dormir 5-6 horas en definición puede aumentar el hambre hasta un 24% al día siguiente (dato documentado en estudios de restricción de sueño) y reducir la síntesis proteica. El sueño no es opcional en un proceso de cambio de composición corporal.</p>
+<hr>
+<h2>Error #10: Buscar el plan perfecto en vez de ejecutar un plan correcto</h2>
+<p>La parálisis por análisis es real. Leyendo más guías, viendo más vídeos y comparando más protocolos no vas a progresar. Un plan correcto ejecutado durante 12 semanas con constancia te va a dar más resultados que el plan &quot;perfecto&quot; ejecutado al 50% durante 4 semanas. Este libro ya es más que suficiente para empezar.</p>
+<hr>
+<h2>Resumen del capítulo</h2>
+<p>Los errores más dañinos no son los técnicos — son los de estrategia y paciencia: déficit demasiado agresivo, demasiado cardio, poco control de la dieta y cambiar el plan antes de darle tiempo. Si evitas estos 10 errores, ya estás por delante del 80% de las personas que entrenan.</p>
+<p><em>Siguiente y último capítulo: plantillas — las herramientas para poner en práctica todo lo anterior.</em></p>
+
+</div>
+
+<div class="chapter">
+  <div class="ch-label">Capítulo 08</div>
+  <h1>Plantillas para empezar desde hoy</h1>
+  <blockquote>
+<p>Este capítulo contiene las herramientas para aplicar la guía desde el primer día.</p>
+</blockquote>
+<hr>
+<h2>Plantilla 1: Calcula tus números (una sola vez)</h2>
+<p>Completa esto antes de empezar:</p>
+<p><strong>Mi peso:</strong> _____ kg<br><strong>Mi altura:</strong> _____ cm<br><strong>Mi objetivo (rodea):</strong> DEFINICIÓN / VOLUMEN / MANTENIMIENTO<br><strong>Mi actividad:</strong> sedentario / activo (4-5 días gym) / muy activo</p>
+<p><strong>Mi TDEE estimado:</strong> peso × factor = _____ × _____ = _____ kcal</p>
+<p><strong>Mis calorías objetivo:</strong></p>
+<ul>
+<li>Definición: TDEE − _____ (300-500) = _____ kcal</li>
+<li>Volumen: TDEE + _____ (200-350) = _____ kcal</li>
+</ul>
+<p><strong>Mis macros:</strong></p>
+<ul>
+<li>Proteína: _____ kg × 2 g = _____ g (× 4 = _____ kcal)</li>
+<li>Grasas: _____ kg × 0.9 g = _____ g (× 9 = _____ kcal)</li>
+<li>Carbohidratos: (_____ − _____ − _____) ÷ 4 = _____ g</li>
+</ul>
+<hr>
+<h2>Plantilla 2: Registro semanal de peso y ajustes</h2>
+<p>Copia esta tabla cada semana en tu móvil o cuaderno:</p>
+<table>
+<thead>
+<tr>
+<th>Día</th>
+<th>Peso mañana (ayunas)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lunes</td>
+<td></td>
+</tr>
+<tr>
+<td>Martes</td>
+<td></td>
+</tr>
+<tr>
+<td>Miércoles</td>
+<td></td>
+</tr>
+<tr>
+<td>Jueves</td>
+<td></td>
+</tr>
+<tr>
+<td>Viernes</td>
+<td></td>
+</tr>
+<tr>
+<td>Sábado</td>
+<td></td>
+</tr>
+<tr>
+<td>Domingo</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Media</strong></td>
+<td>suma ÷ 7 =</td>
+</tr>
+<tr>
+<td>Semana anterior</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Diferencia</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>Interpretación:</strong></p>
+<ul>
+<li>Definición: −0.3 a −0.7 kg ✅ · Sin cambio 2 semanas → −100-150 kcal · &gt;−1 kg → +100-150 kcal</li>
+<li>Volumen: +0.2 a +0.5 kg ✅ · Sin cambio 2 semanas → +100-150 kcal · &gt;+0.7 kg → −100-150 kcal</li>
+</ul>
+<hr>
+<h2>Plantilla 3: Registro de entrenamiento semanal</h2>
+<p>Para cada ejercicio anota peso, series y repeticiones. El objetivo: superar el registro anterior cuando puedas.</p>
+<p><strong>Sesión:</strong> _________________ <strong>Fecha:</strong> _____________</p>
+<table>
+<thead>
+<tr>
+<th>Ejercicio</th>
+<th>Peso</th>
+<th>Series × Reps</th>
+<th>Notas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>¿Subí de peso en algún ejercicio?</strong> Sí / No<br><strong>Sensación general:</strong> 1-10 → ___<br><strong>Horas de sueño la noche anterior:</strong> ___</p>
+<hr>
+<h2>Plantilla 4: Checklist mensual de ajuste</h2>
+<p>Al final de cada mes, responde esto:</p>
+<p><strong>Peso:</strong> media del mes vs mes anterior → diferencia: _____<br><strong>Fotos:</strong> ¿hay cambio visible? Sí / No / Poco<br><strong>Fuerza:</strong> ¿mantuve o subí pesos en ejercicios principales? Sí / No<br><strong>Energía general:</strong> peor / igual / mejor que el mes anterior<br><strong>Sueño promedio:</strong> _____ horas/noche<br><strong>Pasos diarios promedio:</strong> _____</p>
+<p><strong>Decisión del mes que viene:</strong></p>
+<ul>
+<li>☐ Mantener calorías y protocolo</li>
+<li>☐ Bajar _____ kcal</li>
+<li>☐ Subir _____ kcal</li>
+<li>☐ Añadir cardio suave</li>
+<li>☐ Reducir cardio</li>
+<li>☐ Revisar volumen de entrenamiento</li>
+</ul>
+<hr>
+<h2>Plantilla 5: Mis hábitos diarios (protocolo CTG)</h2>
+<p>Adapta esto a tu rutina — esto es lo que yo hago:</p>
+<p><strong>Mañana:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Pesaje en ayunas (siempre antes de comer ni beber)</li>
+<li><input disabled="" type="checkbox"> Café 60-90 minutos después de despertar (no nada más levantarse)</li>
+<li><input disabled="" type="checkbox"> Desayuno con proteína</li>
+</ul>
+<p><strong>Día:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> 5 comidas espaciadas mínimo 2-3 horas</li>
+<li><input disabled="" type="checkbox"> Mínimo 2 litros de agua</li>
+<li><input disabled="" type="checkbox"> 8-10k pasos (no hace falta contarlos si tienes un día activo normal)</li>
+<li><input disabled="" type="checkbox"> Sin comer en las 2-3 horas antes de dormir</li>
+</ul>
+<p><strong>Entrenamiento (días de gym):</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Compuestos pesados primero</li>
+<li><input disabled="" type="checkbox"> Anotar pesos y repeticiones</li>
+<li><input disabled="" type="checkbox"> Cardio suave al final si toca (no antes)</li>
+</ul>
+<p><strong>Noche:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Hipopresivos / estiramientos / movilidad</li>
+<li><input disabled="" type="checkbox"> Respiraciones para bajar el sistema nervioso</li>
+<li><input disabled="" type="checkbox"> Sin pantallas intensas 30 min antes de dormir</li>
+<li><input disabled="" type="checkbox"> Hora de dormir consistente</li>
+</ul>
+<hr>
+<h2>Cómo usar la calculadora gratuita de CTG Fit</h2>
+<p>Todo lo del capítulo 1 lo puedes calcular en menos de 1 minuto en:<br><strong>ctgfit-app.vercel.app/calculadora</strong></p>
+<p>Introduce tu peso, altura, edad, sexo y objetivo — te devuelve tus calorías y macros exactos. Guárdala en el móvil y úsala como referencia cada vez que cambies de objetivo o de peso significativamente.</p>
+<hr>
+<h2>Una última cosa</h2>
+<p>Esta guía tiene todo lo que necesitas para transformar tu composición corporal. No es magia, no es un secreto — es el mismo sistema que cualquier persona con buenos resultados usa, explicado sin rodeos.</p>
+<p>Lo que marca la diferencia no es saber más — es ejecutar de forma consistente durante suficiente tiempo. 12 semanas aplicando lo de esta guía valen más que 12 meses pensando en el plan perfecto.</p>
+<p>Ahora toca trabajar.</p>
+<p><strong>Christian — CTG Fit</strong><br><em>ctgfit-app.vercel.app</em></p>
+
+</div>
+
+</body>
+</html>

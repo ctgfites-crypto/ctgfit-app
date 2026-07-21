@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer'
+import { marked } from 'marked'
 import { readFileSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
@@ -6,289 +7,358 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
 
-// ── Simple markdown → HTML converter ─────────────────────────────────────────
-function mdToHtml(md) {
-  return md
-    // Blockquotes (disclaimers)
-    .replace(/^> (.+)$/gm, '<blockquote>$1</blockquote>')
-    // H1
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    // H2
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    // H3
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    // Bold
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    // Italic
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    // Code inline
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // HR
-    .replace(/^---$/gm, '<hr />')
-    // Tables (simple)
-    .replace(/^\|(.+)\|$/gm, (_, row) => {
-      const cells = row.split('|').map(c => c.trim())
-      const isHeader = cells.some(c => /^-+$/.test(c))
-      if (isHeader) return ''
-      return '<tr>' + cells.map(c => `<td>${c}</td>`).join('') + '</tr>'
-    })
-    // Wrap consecutive <tr> in <table>
-    .replace(/(<tr>[\s\S]+?<\/tr>)(\n<tr>[\s\S]+?<\/tr>)*/g, match => {
-      const rows = match.trim().split('\n')
-      const [header, ...body] = rows
-      return `<table><thead>${header}</thead><tbody>${body.join('')}</tbody></table>`
-    })
-    // Unordered lists
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>[\s\S]+?<\/li>)(\n<li>[\s\S]+?<\/li>)*/g, match => `<ul>${match}</ul>`)
-    // Numbered lists
-    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
-    // Italics at end (links in *italics*)
-    .replace(/<em>(.+?)<\/em>/g, '<em>$1</em>')
-    // Paragraphs — wrap non-tagged lines
-    .split('\n\n')
-    .map(block => {
-      block = block.trim()
-      if (!block) return ''
-      if (/^<(h[1-6]|ul|ol|li|table|blockquote|hr|tr)/.test(block)) return block
-      return `<p>${block.replace(/\n/g, ' ')}</p>`
-    })
-    .join('\n')
+// ── Configurar marked ─────────────────────────────────────────────────────────
+marked.setOptions({ breaks: true, gfm: true })
+
+// ── CSS global ────────────────────────────────────────────────────────────────
+const CSS = `
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  font-size: 15px;
+  line-height: 1.8;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
-// ── Load chapters ─────────────────────────────────────────────────────────────
-const chapters = []
+/* ── PORTADA ── */
+.cover {
+  page-break-after: always;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  gap: 0;
+  position: relative;
+}
+.cover-ctg {
+  font-size: 150px;
+  font-weight: 900;
+  color: #CDFF00;
+  letter-spacing: -4px;
+  line-height: 1;
+}
+.cover-line {
+  width: 160px;
+  height: 2px;
+  background: #CDFF00;
+  margin: 24px auto 28px;
+}
+.cover-title {
+  font-size: 42px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.cover-sub {
+  font-size: 17px;
+  color: #888888;
+  margin-top: 14px;
+  font-weight: 400;
+}
+.cover-footer {
+  position: absolute;
+  bottom: 48px;
+  text-align: center;
+}
+.cover-url {
+  font-size: 13px;
+  font-weight: 800;
+  color: #CDFF00;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.cover-year {
+  font-size: 11px;
+  color: #444;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+
+/* ── ÍNDICE ── */
+.toc {
+  page-break-after: always;
+  padding: 64px 60px;
+  min-height: 100vh;
+}
+.toc-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 40px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #111;
+}
+.toc-num {
+  font-size: 12px;
+  font-weight: 800;
+  color: #CDFF00;
+  letter-spacing: 2px;
+  min-width: 32px;
+}
+.toc-name {
+  font-size: 16px;
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+/* ── CAPÍTULOS ── */
+.chapter {
+  page-break-before: always;
+  padding: 60px 60px 80px;
+  position: relative;
+}
+.ch-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #CDFF00;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.chapter h1 {
+  font-size: 34px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.chapter h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 32px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #CDFF00;
+}
+.chapter h3 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #CDFF00;
+  margin: 24px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.chapter p {
+  margin-bottom: 14px;
+  color: #e0e0e0;
+}
+.chapter strong { color: #ffffff; font-weight: 800; }
+.chapter em { color: #aaaaaa; font-style: italic; }
+.chapter code {
+  background: #111;
+  color: #CDFF00;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: 'Courier New', monospace;
+}
+.chapter blockquote {
+  border-left: 3px solid #CDFF00;
+  background: #111111;
+  padding: 14px 20px;
+  margin: 20px 0;
+  border-radius: 0 6px 6px 0;
+  color: #888888;
+  font-size: 14px;
+}
+.chapter blockquote p { color: #888888; margin: 0; }
+.chapter ul, .chapter ol {
+  margin: 12px 0 16px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.chapter ul li, .chapter ol li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+}
+.chapter ul li::before {
+  content: '■';
+  position: absolute;
+  left: 0;
+  color: #CDFF00;
+  font-size: 8px;
+  top: 4px;
+}
+.chapter ol { counter-reset: item; }
+.chapter ol li { counter-increment: item; }
+.chapter ol li::before {
+  content: counter(item) '.';
+  position: absolute;
+  left: 0;
+  color: #CDFF00;
+  font-weight: 800;
+  font-size: 13px;
+}
+.chapter hr {
+  border: none;
+  border-top: 1px solid #1a1a1a;
+  margin: 28px 0;
+}
+.chapter table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 14px;
+}
+.chapter table th {
+  background: #111111;
+  color: #CDFF00;
+  font-weight: 800;
+  padding: 10px 14px;
+  text-align: left;
+  border: 1px solid #CDFF00;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.chapter table td {
+  padding: 9px 14px;
+  border: 1px solid #222;
+  color: #e0e0e0;
+}
+.chapter table tr:nth-child(even) td { background: #0d0d0d; }
+.chapter table tr:nth-child(odd) td { background: #0a0a0a; }
+
+/* ── FOOTER (via CSS @page + pseudo) ── */
+@page {
+  size: A4;
+  margin: 20mm;
+  @bottom-left {
+    content: 'ctgfit.es';
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: #444;
+  }
+  @bottom-right {
+    content: counter(page);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: #444;
+  }
+}
+`
+
+// ── Leer capítulos ────────────────────────────────────────────────────────────
+const capTitulos = [
+  'Calcula tus números',
+  'Diseña tu déficit sin pasar hambre',
+  'El entrenamiento que protege el músculo',
+  'Cardio y pasos — cuánto de verdad necesitas',
+  'Ajustes semana a semana',
+  'Suplementos — lo que dice la evidencia',
+  'Los errores que arruinan definiciones',
+  'Plantillas para empezar desde hoy',
+]
+
+const capitulos = []
 for (let i = 1; i <= 8; i++) {
-  const md = readFileSync(join(root, `content/guia/capitulo-${i}.md`), 'utf-8')
-  chapters.push(md)
+  const path = join(root, 'content', 'guia', `capitulo-${i}.md`)
+  const md = readFileSync(path, 'utf-8')
+  // Quitar el h1 del markdown (lo ponemos nosotros con estilo propio)
+  const sinH1 = md.replace(/^# .+\n?/m, '').trim()
+  capitulos.push({ num: i, titulo: capTitulos[i - 1], html: marked(sinH1) })
 }
 
-// ── Build HTML ────────────────────────────────────────────────────────────────
-const coverHtml = `
-<div class="page cover-page">
-  <div class="cover-inner">
-    <div class="cover-eyebrow">GUÍA DE DEFINICIÓN</div>
-    <div class="cover-title">CTG<span>FIT</span></div>
-    <div class="cover-sub">El sistema completo en 8 capítulos</div>
-    <div class="cover-author">por Christian · @ctg.fit</div>
+// ── Construir HTML ────────────────────────────────────────────────────────────
+const portada = `
+<div class="cover">
+  <div class="cover-ctg">CTG</div>
+  <div class="cover-line"></div>
+  <div class="cover-title">Guía de Definición</div>
+  <div class="cover-sub">El sistema completo en 8 capítulos</div>
+  <div class="cover-footer">
+    <div class="cover-url">ctgfit.es</div>
+    <div class="cover-year">2026</div>
   </div>
 </div>
 `
 
-const chapterPages = chapters.map((md, idx) => {
-  const num = idx + 1
-  const body = mdToHtml(md)
-  return `
-<div class="page chapter-page">
-  <div class="chapter-num">CAPÍTULO ${num}</div>
-  <div class="chapter-body">${body}</div>
-  <div class="footer">
-    <span>ctgfit.es</span>
-    <span>Guía de Definición CTG Fit</span>
-    <span class="page-num">Capítulo ${num}</span>
-  </div>
+const indice = `
+<div class="toc">
+  <div class="toc-title">Contenido</div>
+  ${capitulos.map(c => `
+    <div class="toc-item">
+      <span class="toc-num">0${c.num}</span>
+      <span class="toc-name">${c.titulo}</span>
+    </div>
+  `).join('')}
 </div>
 `
-}).join('\n')
+
+const pags = capitulos.map(c => `
+<div class="chapter">
+  <div class="ch-label">Capítulo ${String(c.num).padStart(2, '0')}</div>
+  <h1>${c.titulo}</h1>
+  ${c.html}
+</div>
+`).join('')
 
 const fullHtml = `<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Guía de Definición CTG Fit</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet" />
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: #0a0a0a;
-    color: #e0e0e0;
-    font-family: 'Montserrat', system-ui, sans-serif;
-    font-size: 11pt;
-    line-height: 1.7;
-  }
-
-  .page {
-    width: 210mm;
-    min-height: 297mm;
-    padding: 20mm 18mm 18mm;
-    page-break-after: always;
-    position: relative;
-    background: #0a0a0a;
-  }
-
-  /* ── Cover ── */
-  .cover-page {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: #000;
-  }
-  .cover-inner { max-width: 420px; }
-  .cover-eyebrow {
-    color: #aaa;
-    font-size: 10pt;
-    font-weight: 600;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-  .cover-title {
-    font-size: 64pt;
-    font-weight: 900;
-    color: #fff;
-    line-height: 1;
-    letter-spacing: -2px;
-  }
-  .cover-title span { color: #CDFF00; }
-  .cover-sub {
-    font-size: 13pt;
-    font-weight: 600;
-    color: #ccc;
-    margin-top: 20px;
-    margin-bottom: 40px;
-  }
-  .cover-author {
-    font-size: 9pt;
-    color: #666;
-    letter-spacing: 0.1em;
-  }
-
-  /* ── Chapter ── */
-  .chapter-page { padding-bottom: 40mm; }
-
-  .chapter-num {
-    font-size: 9pt;
-    font-weight: 800;
-    color: #CDFF00;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #CDFF00;
-  }
-
-  .chapter-body { color: #e0e0e0; }
-
-  h1 {
-    font-size: 20pt;
-    font-weight: 900;
-    color: #fff;
-    margin: 0 0 20px;
-    line-height: 1.2;
-  }
-
-  h2 {
-    font-size: 14pt;
-    font-weight: 800;
-    color: #fff;
-    margin: 28px 0 10px;
-    padding-top: 16px;
-  }
-
-  h3 {
-    font-size: 11pt;
-    font-weight: 700;
-    color: #CDFF00;
-    margin: 20px 0 6px;
-  }
-
-  p { margin-bottom: 10px; color: #e0e0e0; }
-
-  strong { color: #fff; font-weight: 700; }
-
-  em { color: #aaa; font-style: normal; font-size: 9.5pt; }
-
-  hr {
-    border: none;
-    border-top: 1px solid #222;
-    margin: 20px 0;
-  }
-
-  blockquote {
-    background: #111;
-    border-left: 3px solid #CDFF00;
-    padding: 10px 16px;
-    margin: 12px 0;
-    font-size: 9pt;
-    color: #999;
-    font-style: italic;
-  }
-
-  ul, ol { padding-left: 20px; margin-bottom: 12px; }
-  li { margin-bottom: 4px; color: #e0e0e0; }
-
-  code {
-    background: #1a1a1a;
-    color: #CDFF00;
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-family: monospace;
-    font-size: 9.5pt;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 14px 0;
-    font-size: 9.5pt;
-  }
-  td, th {
-    border: 1px solid #CDFF00;
-    padding: 7px 10px;
-    background: #1a1a1a;
-    text-align: left;
-  }
-  thead td { background: #1a2100; color: #CDFF00; font-weight: 700; }
-
-  /* ── Footer ── */
-  .footer {
-    position: absolute;
-    bottom: 12mm;
-    left: 18mm;
-    right: 18mm;
-    display: flex;
-    justify-content: space-between;
-    font-size: 8pt;
-    color: #444;
-    border-top: 1px solid #1a1a1a;
-    padding-top: 8px;
-  }
-
-  @media print {
-    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <style>${CSS}</style>
 </head>
 <body>
-${coverHtml}
-${chapterPages}
+  ${portada}
+  ${indice}
+  ${pags}
 </body>
 </html>`
 
-// ── Write temp HTML ───────────────────────────────────────────────────────────
-const tmpHtml = join(root, 'scripts', '_guia-tmp.html')
-writeFileSync(tmpHtml, fullHtml, 'utf-8')
+// ── Guardar HTML de debug ─────────────────────────────────────────────────────
+const htmlOut = join(root, 'public', 'guia-ctg-fit.html')
+writeFileSync(htmlOut, fullHtml)
 console.log('HTML generado')
 
 // ── Puppeteer → PDF ───────────────────────────────────────────────────────────
 const browser = await puppeteer.launch({ headless: true })
 const page = await browser.newPage()
-await page.goto(`file://${tmpHtml}`, { waitUntil: 'networkidle0', timeout: 60000 })
+await page.setContent(fullHtml, { waitUntil: 'networkidle0', timeout: 60000 })
 
-// Wait for Montserrat to load
-await page.evaluateHandle('document.fonts.ready')
-
-const pdfPath = join(root, 'public', 'guia-ctg-fit.pdf')
+const pdfOut = join(root, 'public', 'guia-ctg-fit.pdf')
 await page.pdf({
-  path: pdfPath,
+  path: pdfOut,
   format: 'A4',
   printBackground: true,
-  margin: { top: 0, right: 0, bottom: 0, left: 0 },
+  margin: { top: '20mm', right: '20mm', bottom: '20mm', left: '20mm' },
+  displayHeaderFooter: true,
+  headerTemplate: '<span></span>',
+  footerTemplate: `
+    <div style="
+      width:100%; font-family:sans-serif; font-size:10px;
+      color:#444; display:flex; justify-content:space-between;
+      padding:0 20mm; border-top:1px solid #1a1a1a; padding-top:4px;
+    ">
+      <span>ctgfit.es</span>
+      <span class="pageNumber"></span>
+    </div>
+  `,
 })
 
 await browser.close()
-console.log(`PDF generado → ${pdfPath}`)
+
+const { statSync } = await import('fs')
+const size = (statSync(pdfOut).size / 1024).toFixed(0)
+console.log(`PDF generado → ${pdfOut}`)
+console.log(`Tamaño: ${size} KB`)
