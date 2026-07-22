@@ -23,42 +23,20 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Paso 1: crear o actualizar subscriber
-    const r1 = await fetch('https://connect.mailerlite.com/api/subscribers', {
+    const r = await fetch('https://connect.mailerlite.com/api/subscribers', {
       method: 'POST',
       headers,
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, groups: [groupId] }),
     })
 
-    if (!r1.ok) {
-      const text = await r1.text()
-      console.error('subscribe: error creando subscriber', { status: r1.status, body: text })
-      return res.status(r1.status).json({ error: 'Error al suscribir' })
+    const data = await r.json()
+
+    if (!r.ok) {
+      console.error('subscribe: error', { status: r.status, body: JSON.stringify(data) })
+      return res.status(r.status).json({ error: 'Error al suscribir' })
     }
 
-    const data = await r1.json()
-    const subscriberId = data?.data?.id
-    console.log('subscribe: subscriber ok', { email, subscriberId })
-
-    // Paso 2: asignar al grupo (best-effort, no bloquea el 200)
-    if (subscriberId && groupId) {
-      fetch(
-        `https://connect.mailerlite.com/api/subscribers/${subscriberId}/groups`,
-        {
-          method: 'POST',
-          headers,
-          body: JSON.stringify({ groups: [groupId] }),
-        }
-      ).then(async (r2) => {
-        if (!r2.ok) {
-          const t2 = await r2.text()
-          console.error('subscribe: error asignando grupo', { status: r2.status, body: t2 })
-        }
-      }).catch((err) => {
-        console.error('subscribe: error red grupo', { message: err.message })
-      })
-    }
-
+    console.log('subscribe: ok', { email, id: data?.data?.id, groups: data?.data?.groups })
     return res.status(200).json({ ok: true })
   } catch (err) {
     console.error('subscribe: network error', { message: err.message })

@@ -38,6 +38,9 @@ export default function App() {
     }
     document.title = meta.titulo
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.desc)
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', meta.titulo)
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', meta.desc)
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', `https://ctgfit.es${ruta}`)
   }, [ruta])
 
   if (ruta === '/calculadora') return <Calculadora />

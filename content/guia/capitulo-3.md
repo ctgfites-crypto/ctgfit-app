@@ -1,6 +1,6 @@
 # GUÍA CTG — CAPÍTULO 3: EL ENTRENAMIENTO QUE PROTEGE EL MÚSCULO
 
-> Información educativa. No sustituye el consejo de un profesional del deporte o médico.
+> Información educativa. No sustituye el consejo de un profesional del deporte o médico. (Más información en ctgfit.es/legal)
 
 ## El error que destruye definiciones perfectas
 
@@ -44,7 +44,7 @@ El consenso de la evidencia científica actual sobre hipertrofia y retención mu
 | Sábado | Tirón + pierna (volumen reducido) |
 | Domingo | Descanso completo |
 
-Esto da frecuencia 2 por grupo muscular con 6 días de entrenamiento. En definición mantengo este mismo split — a veces reduzco una sesión si la fatiga acumulada es alta, pero nunca bajo de 4 sesiones semanales.
+Esto da frecuencia 2 por grupo muscular con 5 días de entrenamiento + 1 de descanso activo. En definición mantengo este mismo split — a veces reduzco una sesión si la fatiga acumulada es alta, pero nunca bajo de 4 sesiones semanales.
 
 ---
 

@@ -1,8 +1,6 @@
 import { navegar } from './router.js'
 import './guia.css'
 
-const GUMROAD_URL = 'https://ctgfit6.gumroad.com/l/kugjcq'
-
 export default function Gracias() {
   return (
     <div className="guia-page">
@@ -12,31 +10,33 @@ export default function Gracias() {
         </a>
       </nav>
 
-      <section style={{ padding: '80px 0 40px', textAlign: 'center' }}>
+      <section style={{ padding: '80px 0 60px', textAlign: 'center' }}>
         <div className="guia-wrap">
-          <div style={{ fontSize: 64, marginBottom: 24 }}>✓</div>
-          <h1 style={{ color: '#CDFF00', fontSize: 'clamp(28px,5vw,44px)', fontWeight: 900, marginBottom: 16 }}>
-            ¡Ya estás apuntado!
+          <div style={{ fontSize: 56, marginBottom: 20, color: '#CDFF00' }}>✓</div>
+          <h1 style={{ color: '#ffffff', fontSize: 'clamp(28px,5vw,40px)', fontWeight: 900, marginBottom: 16 }}>
+            Estás dentro.
           </h1>
-          <p style={{ fontSize: 18, color: '#e0e0e0', marginBottom: 8 }}>
-            Te avisamos el 31 de agosto cuando la Guía de Definición CTG esté disponible.
+          <p style={{ fontSize: 17, color: '#aaa', lineHeight: 1.65, marginBottom: 8 }}>
+            El 31 de agosto tienes acceso antes que nadie.
           </p>
-          <p style={{ color: '#666', fontSize: 15, marginBottom: 48 }}>
+          <p style={{ color: '#555', fontSize: 14, marginBottom: 56 }}>
             Revisa tu bandeja de entrada — en unos minutos recibirás un email de confirmación.
           </p>
 
           <div style={{
             background: '#111',
-            border: '1px solid #222',
-            borderRadius: 16,
+            border: '1px solid #1e1e1e',
+            borderRadius: 12,
             padding: '36px 28px',
-            marginBottom: 40,
           }}>
-            <h2 style={{ color: '#fff', fontSize: 20, fontWeight: 800, marginBottom: 12 }}>
-              Mientras tanto, aprovecha la calculadora
+            <p style={{ color: '#888', fontSize: 13, textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 700, marginBottom: 12 }}>
+              Mientras tanto
+            </p>
+            <h2 style={{ color: '#fff', fontSize: 20, fontWeight: 800, marginBottom: 10 }}>
+              Calcula tus macros gratis ahora
             </h2>
-            <p style={{ color: '#999', fontSize: 15, marginBottom: 24 }}>
-              Calcula tus macros gratis ahora — es el primer paso del sistema.
+            <p style={{ color: '#777', fontSize: 14, marginBottom: 28, lineHeight: 1.6 }}>
+              Es el primer paso del sistema. Te lleva 2 minutos y ya tienes el número real con el que empezar.
             </p>
             <a
               href="/calculadora"
@@ -47,7 +47,7 @@ export default function Gracias() {
                 color: '#000',
                 fontWeight: 800,
                 fontSize: 15,
-                padding: '14px 28px',
+                padding: '14px 32px',
                 borderRadius: 8,
                 textDecoration: 'none',
               }}
@@ -55,18 +55,6 @@ export default function Gracias() {
               Calcular mis macros →
             </a>
           </div>
-
-          <p style={{ color: '#555', fontSize: 14 }}>
-            ¿Ya quieres la guía?{' '}
-            <a
-              href={GUMROAD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: '#CDFF00', textDecoration: 'underline' }}
-            >
-              Cómprala ahora por 9,99&nbsp;€
-            </a>
-          </p>
         </div>
       </section>
 

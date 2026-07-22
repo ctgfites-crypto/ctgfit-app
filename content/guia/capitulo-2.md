@@ -1,6 +1,6 @@
 # GUÍA CTG — CAPÍTULO 2: CÓMO DISEÑAR TU DÉFICIT SIN PASAR HAMBRE NI VIVIR PESANDO COMIDA
 
-> Información educativa. No sustituye el consejo de un dietista-nutricionista o médico.
+> Información educativa. No sustituye el consejo de un dietista-nutricionista o médico. (Más información en ctgfit.es/legal)
 
 ## El problema real de las dietas de definición
 
@@ -120,7 +120,7 @@ Un dato práctico: añadir psyllium (cáscara de psyllium, ~5g en un vaso de agu
 1. El hambre es hormonal, no moral — puedes gestionarla con estrategia
 2. Llena la mitad del plato de verdura: mismo déficit, más volumen
 3. Proteína en todas las comidas — es el macro más saciante
-4. 4-5 comidas al día, espaciadas 2,5-4h (ajusta a lo que te funcione)
+4. 4-5 comidas al día, espaciadas 2,5-3,5h (ajusta a lo que te funcione)
 5. Pesa comida 4-6 semanas al inicio para calibrar — luego estimas con precisión
 6. Fibra 25-35g/día: verduras, avena, legumbres, fruta entera
 

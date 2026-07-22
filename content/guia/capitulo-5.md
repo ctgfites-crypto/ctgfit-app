@@ -1,6 +1,6 @@
 # GUÍA CTG — CAPÍTULO 5: AJUSTES SEMANA A SEMANA — CÓMO LEER LOS DATOS Y QUÉ TOCAR
 
-> Información educativa. No sustituye el consejo de un profesional del deporte o médico.
+> Información educativa. No sustituye el consejo de un profesional del deporte o médico. (Más información en ctgfit.es/legal)
 
 ## Por qué los números del capítulo 1 son solo el punto de partida
 
@@ -70,7 +70,7 @@ Una recarga es un día (o 2-3 días) donde subes los carbohidratos hasta el nive
 Para qué sirven en definición:
 - Reponer glucógeno muscular (mejor rendimiento en entrenamientos)
 - Dar un respiro psicológico al plan
-- Pueden ayudar a "romper" estancamientos en definiciones largas
+- Pueden mejorar la adherencia al plan en definiciones largas y reducen ligeramente la adaptación metabólica — pero no producen mejor composición corporal que el déficit continuo a igualdad de tiempo
 
 Cuándo usarlas: cuando llevas 4-6 semanas en déficit continuo y la energía y fuerza empiezan a resentirse. No antes — si el déficit es reciente no tiene sentido.
 

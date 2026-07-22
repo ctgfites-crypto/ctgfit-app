@@ -1,6 +1,6 @@
 # GUÍA CTG — CAPÍTULO 6: SUPLEMENTOS — LO QUE DICE LA EVIDENCIA Y LO QUE PUEDES IGNORAR
 
-> Información educativa. Los suplementos pueden interactuar con medicamentos o condiciones de salud. Consulta con un profesional antes de tomarlos.
+> Información educativa. Los suplementos pueden interactuar con medicamentos o condiciones de salud. Consulta con un profesional antes de tomarlos. (Más información en ctgfit.es/legal)
 
 ## La realidad del mercado de suplementos
 

@@ -7,8 +7,8 @@ Web app fitness en React + Vercel. URL: ctgfit-app.vercel.app → futuro: ctgfit
 React, Tailwind, Vercel, MailerLite (API pendiente), Gumroad (31 agosto)
 
 ## Paleta
-- Negro: #0a0a0a
-- Lima: #0BC244  
+- Negro: #000000 / #0a0a0a (fondo)
+- Lima: #CDFF00 (único valor — no usar variantes)
 - Blanco: #ffffff
 
 ## Tipografía
@@ -22,9 +22,19 @@ Montserrat ExtraBold para títulos. Nunca sans-serif genéricas.
 
 ## Pendientes activos
 - [ ] Hero: foto real + mockup calculadora
-- [ ] MailerLite: conectar formulario
+- [x] MailerLite: API key en .env + group ID 193426212975019303 ("Lista CTG") conectado
+- [ ] MailerLite: completar automation a 5 emails (ahora tiene 3, desactivada) — hacer en dashboard
+- [ ] MailerLite: activar automation desde dashboard una vez completa
 - [ ] /legal: title y meta independientes
-- [ ] ctgfit.es: configurar cuando se compre el dominio
+- [x] ctgfit.es: dominio configurado y en producción
+- [ ] /gracias: limpiada (sin CTA de compra hasta 31 agosto) ✓
+
+## Lanzamiento
+- Fecha: 31 agosto 2026
+- Precio: 9,99€ (precio lanzamiento)
+- Gumroad: https://ctgfit6.gumroad.com/l/kugjcq
+- MailerLite grupo: 193426212975019303
+- MailerLite automation ID: 193537902611793053 (desactivada — activar antes del 31)
 
 ## graphify
 

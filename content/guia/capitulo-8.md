@@ -67,6 +67,9 @@ Para cada ejercicio anota peso, series y repeticiones. El objetivo: superar el r
 **Sensación general:** 1-10 → ___
 **Horas de sueño la noche anterior:** ___
 
+*Versión Google Sheets descargable: ctgfit.es/plantillas*
+*(esta página debe existir en la web antes de publicar la guía)*
+
 ---
 
 ## Plantilla 4: Checklist mensual de ajuste
@@ -111,7 +114,7 @@ Adapta esto a tu rutina — esto es lo que yo hago:
 - [ ] Cardio suave al final si toca (no antes)
 
 **Noche:**
-- [ ] Hipopresivos / estiramientos / movilidad
+- [ ] Estiramientos de cadena posterior (2-3 min) / movilidad
 - [ ] Respiraciones para bajar el sistema nervioso
 - [ ] Sin pantallas intensas 30 min antes de dormir
 - [ ] Hora de dormir consistente
@@ -121,7 +124,7 @@ Adapta esto a tu rutina — esto es lo que yo hago:
 ## Cómo usar la calculadora gratuita de CTG Fit
 
 Todo lo del capítulo 1 lo puedes calcular en menos de 1 minuto en:
-**ctgfit-app.vercel.app/calculadora**
+**ctgfit.es/calculadora**
 
 Introduce tu peso, altura, edad, sexo y objetivo — te devuelve tus calorías y macros exactos. Guárdala en el móvil y úsala como referencia cada vez que cambies de objetivo o de peso significativamente.
 
@@ -133,7 +136,22 @@ Esta guía tiene todo lo que necesitas para transformar tu composición corporal
 
 Lo que marca la diferencia no es saber más — es ejecutar de forma consistente durante suficiente tiempo. 12 semanas aplicando lo de esta guía valen más que 12 meses pensando en el plan perfecto.
 
-Ahora toca trabajar.
+Ahora empieza.
 
 **Christian — CTG Fit**
-*ctgfit-app.vercel.app*
+*ctgfit.es*
+
+---
+
+Sígueme en TikTok: @ctg.fit
+Instagram: @ctgfit.es
+Si esta guía te ayudó, compártela.
+ctgfit.es
+
+---
+
+## Tres pasos para empezar hoy
+
+1. Calcula tus macros en **ctgfit.es/calculadora** (1 minuto)
+2. Sígueme en TikTok **@ctg.fit** para el contenido semanal
+3. Comparte esta guía si te ha ayudado

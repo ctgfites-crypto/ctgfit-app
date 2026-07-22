@@ -124,6 +124,7 @@ export default function Guia() {
             Consíguela en Gumroad →
           </a>
           <p className="guia-nota">Entrega inmediata · PDF descargable · Pago seguro</p>
+          <p className="guia-garantia">Si no aporta lo que promete, escríbeme y te devuelvo el dinero.</p>
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 # GUÍA CTG — CAPÍTULO 4: CARDIO Y PASOS — CUÁNTO DE VERDAD NECESITAS
 
-> Información educativa. No sustituye el consejo de un profesional del deporte o médico.
+> Información educativa. No sustituye el consejo de un profesional del deporte o médico. (Más información en ctgfit.es/legal)
 
 ## El mito que más gente sigue sin cuestionar
 
@@ -12,9 +12,9 @@ El cardio es una herramienta. Como cualquier herramienta, hay que saber cuándo 
 
 Tu gasto diario total (TDEE del capítulo 1) se divide en cuatro partes:
 
-1. **BMR** (~60-70%): lo que gastas existiendo — respirar, corazón, órganos
-2. **NEAT** (~15-30%): actividad no planificada — caminar, moverte, gesticular, estar de pie
-3. **TEF** (~10%): energía que gasta el propio proceso de digerir comida
+1. **BMR** (~60-65%): lo que gastas existiendo — respirar, corazón, órganos
+2. **NEAT** (~20-25%): actividad no planificada — caminar, moverte, gesticular, estar de pie
+3. **TEF** (~8-10%): energía que gasta el propio proceso de digerir comida
 4. **EAT** (~5-10%): ejercicio planificado (gym, cardio)
 
 El número que sorprende a todo el mundo: el cardio planificado representa solo el 5-10% del gasto total. Los pasos y el movimiento diario (NEAT) pueden representar el triple. Esto cambia completamente cómo deberías enfocar tu definición.
@@ -56,7 +56,7 @@ Si llevas dos semanas sin bajar peso, revisa primero la dieta (¿estás midiendo
 - HIIT: 0-1 sesión/semana si necesito acelerar el déficit
 - Cardio en ayunas: no por defecto
 
-En total: menos de 1 hora de cardio planificado por semana. El resto del déficit lo hace la dieta.
+En total: 45-60 minutos de cardio planificado por semana. El resto del déficit lo hace la dieta.
 
 ## Resumen del capítulo
 

@@ -1,6 +1,6 @@
 # GUÍA CTG — CAPÍTULO 7: LOS ERRORES QUE ARRUINAN DEFINICIONES
 
-> Información educativa. No sustituye el consejo de un profesional del deporte o médico.
+> Información educativa. No sustituye el consejo de un profesional del deporte o médico. (Más información en ctgfit.es/legal)
 
 ## Por qué este capítulo existe
 
@@ -18,7 +18,7 @@ La pérdida óptima de grasa sin pérdida significativa de músculo ocurre entre
 
 ## Error #2: Calcular proteína sobre el peso actual con exceso de grasa
 
-Si pesas 90 kg pero tienes un 25% de grasa, tus músculos no pesan 90 kg — pesan aproximadamente 67 kg. Calcular 2 g/kg sobre 90 kg son 180 g de proteína. Calculado sobre el peso objetivo (75 kg, por ejemplo): 150 g. La diferencia no es enorme pero importa — y el error siempre va en la dirección de malentender tus requerimientos reales.
+Si pesas 90 kg pero tienes mucho porcentaje de grasa, calcular 2 g/kg sobre tu peso actual infla la cifra de proteína innecesariamente. Calculado sobre tu peso objetivo (75 kg, por ejemplo): 150 g. Usa siempre el peso objetivo como referencia — es el método correcto y el que aplico en toda la guía.
 
 ---
 
@@ -60,7 +60,7 @@ Si entrenas pesas y cardio el mismo día, hazlo en este orden: pesas → cardio.
 
 ## Error #9: Ignorar el sueño
 
-Durante el sueño se secreta la mayor parte de la hormona de crecimiento, se repara el tejido muscular y se regulan la leptina (saciedad) y la grelina (hambre). Dormir 5-6 horas en definición puede aumentar el hambre hasta un 24% al día siguiente (dato documentado en estudios de restricción de sueño) y reducir la síntesis proteica. El sueño no es opcional en un proceso de cambio de composición corporal.
+Durante el sueño se secreta la mayor parte de la hormona de crecimiento, se repara el tejido muscular y se regulan la leptina (saciedad) y la grelina (hambre). Dormir 5-6 horas en definición puede aumentar el hambre hasta un 24% al día siguiente (Spiegel et al., 2004) y reducir la síntesis proteica. Estudios posteriores no replican el efecto hormonal de forma consistente, pero el impacto conductual — más hambre, peores decisiones alimentarias — sí está documentado. El sueño no es opcional en un proceso de cambio de composición corporal.
 
 ---
 

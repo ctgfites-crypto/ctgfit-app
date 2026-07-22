@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer'
+﻿import puppeteer from 'puppeteer'
 import { marked } from 'marked'
 import { readFileSync, writeFileSync } from 'fs'
 import { join, dirname } from 'path'
@@ -7,10 +7,10 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
 
-// ── Configurar marked ─────────────────────────────────────────────────────────
+// â”€â”€ Configurar marked â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 marked.setOptions({ breaks: true, gfm: true })
 
-// ── CSS global ────────────────────────────────────────────────────────────────
+// â”€â”€ CSS global â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const CSS = `
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap');
 
@@ -26,7 +26,7 @@ body {
   print-color-adjust: exact;
 }
 
-/* ── PORTADA ── */
+/* â”€â”€ PORTADA â”€â”€ */
 .cover {
   page-break-after: always;
   height: 100vh;
@@ -83,7 +83,39 @@ body {
   letter-spacing: 1px;
 }
 
-/* ── ÍNDICE ── */
+/* â”€â”€ PÃGINA INTRO â”€â”€ */
+.intro-page {
+  page-break-after: always;
+  min-height: 100vh;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 72px;
+}
+.intro-title {
+  font-size: 28px;
+  font-weight: 900;
+  color: #C8FF00;
+  letter-spacing: 0.5px;
+  margin-bottom: 48px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.intro-body p {
+  font-size: 16px;
+  color: #e0e0e0;
+  line-height: 1.85;
+  margin-bottom: 22px;
+}
+.intro-firma {
+  margin-top: 40px !important;
+  font-size: 15px !important;
+  font-weight: 800;
+  color: #ffffff !important;
+}
+
+/* â”€â”€ ÃNDICE â”€â”€ */
 .toc {
   page-break-after: always;
   padding: 64px 60px;
@@ -117,7 +149,7 @@ body {
   font-weight: 600;
 }
 
-/* ── CAPÍTULOS ── */
+/* â”€â”€ CAPÃTULOS â”€â”€ */
 .chapter {
   page-break-before: always;
   padding: 60px 60px 80px;
@@ -192,7 +224,7 @@ body {
   color: #e0e0e0;
 }
 .chapter ul li::before {
-  content: '■';
+  content: 'â– ';
   position: absolute;
   left: 0;
   color: #CDFF00;
@@ -239,7 +271,7 @@ body {
 .chapter table tr:nth-child(even) td { background: #0d0d0d; }
 .chapter table tr:nth-child(odd) td { background: #0a0a0a; }
 
-/* ── FOOTER (via CSS @page + pseudo) ── */
+/* â”€â”€ FOOTER (via CSS @page + pseudo) â”€â”€ */
 @page {
   size: A4;
   margin: 20mm;
@@ -258,14 +290,14 @@ body {
 }
 `
 
-// ── Leer capítulos ────────────────────────────────────────────────────────────
+// â”€â”€ Leer capÃ­tulos â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const capTitulos = [
-  'Calcula tus números',
-  'Diseña tu déficit sin pasar hambre',
-  'El entrenamiento que protege el músculo',
-  'Cardio y pasos — cuánto de verdad necesitas',
+  'Calcula tus nÃºmeros',
+  'DiseÃ±a tu dÃ©ficit sin pasar hambre',
+  'El entrenamiento que protege el mÃºsculo',
+  'Cardio y pasos â€” cuÃ¡nto de verdad necesitas',
   'Ajustes semana a semana',
-  'Suplementos — lo que dice la evidencia',
+  'Suplementos â€” lo que dice la evidencia',
   'Los errores que arruinan definiciones',
   'Plantillas para empezar desde hoy',
 ]
@@ -279,16 +311,30 @@ for (let i = 1; i <= 8; i++) {
   capitulos.push({ num: i, titulo: capTitulos[i - 1], html: marked(sinH1) })
 }
 
-// ── Construir HTML ────────────────────────────────────────────────────────────
+// â”€â”€ Construir HTML â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const portada = `
 <div class="cover">
   <div class="cover-ctg">CTG</div>
   <div class="cover-line"></div>
-  <div class="cover-title">Guía de Definición</div>
-  <div class="cover-sub">El sistema completo en 8 capítulos</div>
+  <div class="cover-title">GuÃ­a de DefiniciÃ³n</div>
+  <div class="cover-sub">El sistema completo en 8 capÃ­tulos</div>
   <div class="cover-footer">
     <div class="cover-url">ctgfit.es</div>
     <div class="cover-year">2026</div>
+  </div>
+</div>
+`
+
+const intro = `
+<div class="intro-page">
+  <div class="intro-title">Por quÃ© existe esta guÃ­a</div>
+  <div class="intro-body">
+    <p>Llevo aÃ±os entrenando. Durante los primeros, hacÃ­a lo que hacÃ­a todo el mundo: cardio en ayunas, dÃ©ficit agresivo, cambiar el plan cada dos semanas cuando no veÃ­a resultados.</p>
+    <p>No funcionÃ³. PerdÃ­ mÃºsculo, me estanquÃ© y perdÃ­ tiempo que no vuelve.</p>
+    <p>Lo que sÃ­ funcionÃ³ fue simple: calcular bien, ajustar con datos reales y ser constante durante suficiente tiempo. Sin secretos, sin suplementos milagrosos, sin rutinas de influencer.</p>
+    <p>Esta guÃ­a es exactamente eso. El sistema que uso yo, explicado sin rodeos, para que no pierdas el tiempo que perdÃ­ yo.</p>
+    <p>Para quien entrena con cabeza y quiere resultados que duran.</p>
+    <p class="intro-firma">Christian â€” CTG Fit</p>
   </div>
 </div>
 `
@@ -307,7 +353,7 @@ const indice = `
 
 const pags = capitulos.map(c => `
 <div class="chapter">
-  <div class="ch-label">Capítulo ${String(c.num).padStart(2, '0')}</div>
+  <div class="ch-label">CapÃ­tulo ${String(c.num).padStart(2, '0')}</div>
   <h1>${c.titulo}</h1>
   ${c.html}
 </div>
@@ -321,22 +367,23 @@ const fullHtml = `<!DOCTYPE html>
 </head>
 <body>
   ${portada}
+  ${intro}
   ${indice}
   ${pags}
 </body>
 </html>`
 
-// ── Guardar HTML de debug ─────────────────────────────────────────────────────
-const htmlOut = join(root, 'public', 'guia-ctg-fit.html')
+// â”€â”€ Guardar HTML de debug â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+const htmlOut = join(root, 'public', 'guia-ctg-fit-v2.html')
 writeFileSync(htmlOut, fullHtml)
 console.log('HTML generado')
 
-// ── Puppeteer → PDF ───────────────────────────────────────────────────────────
+// â”€â”€ Puppeteer â†’ PDF â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const browser = await puppeteer.launch({ headless: true })
 const page = await browser.newPage()
 await page.setContent(fullHtml, { waitUntil: 'networkidle0', timeout: 60000 })
 
-const pdfOut = join(root, 'public', 'guia-ctg-fit.pdf')
+const pdfOut = join(root, 'public', 'guia-ctg-fit-v2.pdf')
 await page.pdf({
   path: pdfOut,
   format: 'A4',
@@ -360,5 +407,6 @@ await browser.close()
 
 const { statSync } = await import('fs')
 const size = (statSync(pdfOut).size / 1024).toFixed(0)
-console.log(`PDF generado → ${pdfOut}`)
-console.log(`Tamaño: ${size} KB`)
+console.log(`PDF generado â†’ ${pdfOut}`)
+console.log(`TamaÃ±o: ${size} KB`)
+

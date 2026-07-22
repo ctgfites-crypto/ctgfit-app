@@ -1,6 +1,6 @@
 # GUÍA CTG — CAPÍTULO 1: CALCULA TUS NÚMEROS
 
-> Información educativa. No sustituye el consejo de un dietista-nutricionista o médico. Si tienes alguna condición de salud, consulta antes con un profesional.
+> Información educativa. No sustituye el consejo de un dietista-nutricionista o médico. Si tienes alguna condición de salud, consulta antes con un profesional. (Más información en ctgfit.es/legal)
 
 ## Antes de nada: el orden de las cosas
 
@@ -47,9 +47,6 @@ Más superávit no es más músculo: el músculo se construye lento, y el excede
 El orden importa: proteína primero, grasas después, y los carbohidratos rellenan el resto.
 
 **1. PROTEÍNA: 1,8-2,2 g por kg de peso**
-- En definición ve a la parte alta (2-2,2): protege el músculo en déficit.
-- En volumen, 1,8-2 sobra.
-- Si tienes bastante grasa que perder, calcula sobre tu peso objetivo, no el actual.
 
 *Mi caso: 85 kg × 2 = **170 g de proteína** (680 kcal)*
 
@@ -73,7 +70,9 @@ Rellena esto y pégalo donde lo veas:
 - Objetivo (definición/volumen): ____ kcal
 - Proteína: ____ g · Grasas: ____ g · Carbohidratos: ____ g
 
-O hazlo en 30 segundos con mi calculadora gratuita: **ctgfit-app.vercel.app/calculadora**
+> En definición ve a la parte alta (2-2,2 g/kg). Si el déficit es agresivo o llevas tiempo definiendo, sube hasta 2,5 g/kg — la evidencia reciente muestra que el techo útil es más alto cuanto menor es la ingesta calórica. En volumen, 1,8-2 g/kg sobra. Si tienes bastante grasa que perder, calcula sobre tu peso objetivo, no el actual.
+
+O hazlo en 30 segundos con mi calculadora gratuita: **ctgfit.es/calculadora**
 
 ## Errores de este paso (los veo a diario)
 
